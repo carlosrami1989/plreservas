@@ -1289,7 +1289,7 @@ div.style.width = "500px";
   background-image: url("/img/fondo.jpg");
   background-size: cover;
   height: 110vh;
-}
+} 
 .bgimagen_dos {
   background-image: url("/img/fondo_dos.jpg");
   background-size: cover;
