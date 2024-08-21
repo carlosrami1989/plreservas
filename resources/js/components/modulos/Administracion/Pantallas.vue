@@ -461,7 +461,7 @@
             </v-btn>
           </v-card-actions>
           <div class="footer">
-              <p> <a href="#"  @click.prevent="registrar.terminos = true"  >Términos y Condiciones</a>|<a href="#" @click.prevent="registrar.politicas = true">Políticas de Privacidad</a>|<a href="">Contactos</a>  </p>
+              <p> <a href="#"  @click.prevent="registrar.terminos = true"  >Términos y Condiciones</a>|<a href="#" @click.prevent="registrar.politicas = true">Políticas de Privacidad</a>|<a href="#" @click.prevent="registrar.contacto = true">Contactos</a>  </p>
             </div>
             <v-dialog v-model="registrar.terminos" width="40%">
             <v-card>
@@ -470,18 +470,17 @@
                
                 <ul>
                   <li>
-                    Consentimiento para recibir comunicaciones de Pizza Libre
+                    El tiempo de espera para tu reserva es de 15 min. Posterior a eso liberaremos la mesa para que otros comensales puedan disfrutar.
                   </li>
                   <li>
-                    Debe de estar el 70 % de las personas para las cuales se
-                    solicita la reserva para poder pasar a la mesa
+                    Para la asignación de mesas por reservas grupales deben estar presentes mínimo el 70% del grupo.
                   </li>
-                  <li>Solo podría reservarse el 50 % del local</li>
+                  <li>El valor del abono es consumible durante la fecha de la reserva.</li>
                   <li>
-                    El tiempo de espera es de 10 minutos para mantener la
-                    reserva
+                    Si deseas cancelar la reserva, te pedimos lo anuncies con mínimo de 24 horas para asignar la mesa a otros comensales.
                   </li>
-                  <li>El abono es consumible no reembolsable</li>
+                  <li>Para reservas corporativas por favor escribir a info@pizzalibregye.com</li>
+                  <li>Por tu reserva tendrás la ventaja de conocer las novedades de pizza libre antes de anunciarlas.</li>
                 </ul>
               </v-card-text>
               <v-card-actions>
@@ -524,6 +523,42 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
+          <v-dialog v-model="registrar.contacto" width="40%">
+            <v-card>
+              <v-card-title class="text-h6">   Contactos </v-card-title>
+              <v-card-text>
+               
+                
+                 
+                 <a href="https://wa.me/593967376825" target="_blank" rel="noopener noreferrer"> 
+                  <v-icon color="green">mdi-whatsapp</v-icon> 
+                  Pizza Libre Arcos Plaza 
+                </a>
+                 <br>
+                 <a href="https://wa.me/593998268379" target="_blank" rel="noopener noreferrer"> 
+                  <v-icon color="green">mdi-whatsapp</v-icon> 
+                  Pizza Libre Urdesa 
+                </a>
+                    <br>
+                    <a href="https://wa.me/593997154773" target="_blank" rel="noopener noreferrer"> 
+                  <v-icon color="green">mdi-whatsapp</v-icon> 
+                  Pizza Libre Buijo
+                </a>
+                  <br>
+                  <a href="#"   rel="noopener noreferrer"> 
+                  <v-icon color="primary">mdi-email</v-icon> 
+                  hola@pizzalibregye.com
+                </a>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn text color="purple" @click="registrar.contacto = false">
+                  Ok
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
         </v-card>
         <!-- <span
           >Para reservas mayores a 10 personas, por favor contáctarse al número
