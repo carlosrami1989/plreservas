@@ -294,7 +294,7 @@ class ReservacionController extends Controller
                     'apellidos' => $request->apellidos,
                     'cedula' => $request->cedula,
                     'telefono' => $request->celular,
-                    'direccion' =>$buscarCliente == null?0:$buscarCliente->direccion,
+                    'direccion' =>$request->direccion,
                     
                     'correo' => $request->correo_electronico,
                     'usu_created' => 1,

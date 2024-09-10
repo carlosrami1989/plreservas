@@ -1,70 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Sistemas Reserva Pizza Libre</title>
-   <style type="text/css">
-      h1 {
-         color: #0c0c0c;
-      }
-
-      p {
-         font-size: 1rem;
-      }
-
-      img {
-         width: 10rem;
-         height: 10rem;
-      }
-   </style>
-</head>
-
-<body>
-   <h1>SISTEMA DE REGISTRO DE RESERVA</h1>
-   <hr>
-   <h3>Pizza Libre Gye</h3>
-   <hr>
-   <span>Buenas tardes estimad@,{{  $distressCall->nombres }} {{  $distressCall->apellidos  }} le saluda la
-      administración de Pizza Libre, comunicanto su reserva </span>
-   <br>
-   <br>
-   <br>
-   <table>
-      <tr>
-         <td><b>LOCAL:</b>
-         </td>
-         <td>{{  $distressCall->sucursal }}
-         </td>
-      </tr>
-      <tr>
-         <td><b>AMBIENTE:</b>
-         </td>
-         <td>{{  $distressCall->sucursa_mesa }}
-         </td>
-      <tr>
-         <td><b>HORA:</b>
-         </td>
-         <td>{{  $distressCall->hora_reserva }}
-         </td>
-      <tr>
-      <tr>
-         <td><b>FECHA:</b>
-         </td>
-         <td>{{  $distressCall->fecha_reserva }}
-         </td>
-      <tr>
-   </table>
-   <h3>Términos y condiciones</h3>
-   <ul>
-      <li>Consentimiento para recibir comunicaciones de Pizza Libre </li>
-      <li> Debe de estar el 70 % de las personas para las cuales se solicita la reserva para poder pasar a la mesa</li>
-      <li>Solo podría reservarse el 50 % del local
-      </li>
-      <li>El tiempo de espera es de 10 minutos para mantener la reserva</li>
-      <li>El abono es consumible no reembolsable</li>
-   </ul>
-</body>
-
-</html>
+<p>&nbsp;</p>
+<h1>SISTEMA DE REGISTRO DE RESERVA</h1>
+<hr />
+<h3>Pizza Libre Gye</h3>
+<hr />
+<p>Hii ,{{ $distressCall->nombres }} {{ $distressCall->apellidos }} <br /><br /><strong>Tu reserva está lista. Te esperamos en :</strong><br /><br /><br /></p>
+<table>
+<tbody>
+<tr>
+<td><strong>LOCAL:</strong></td>
+<td>{{ $distressCall->sucursal }}</td>
+</tr>
+<tr>
+<td><strong>AMBIENTE:</strong></td>
+<td>{{ $distressCall->sucursa_mesa }}</td>
+</tr>
+<tr>
+<td><strong>HORA:</strong></td>
+<td>{{ $distressCall->hora_reserva }}</td>
+</tr>
+<tr>
+<td><strong>FECHA:</strong></td>
+<td>{{ $distressCall->fecha_reserva }}</td>
+</tr>
+</tbody>
+</table>
+<h3>T&eacute;rminos y condiciones</h3>
+<ul>
+<li>El tiempo de espera para tu reserva es de 15 min. Posterior a eso liberaremos la mesa para que otros comensales puedan disfrutar.</li>
+<li>Para la asignaci&oacute;n de mesas por reservas grupales deben estar presentes m&iacute;nimo el 70% del grupo.</li>
+<li>El valor del abono es consumible durante la fecha de la reserva.</li>
+<li>Si deseas cancelar la reserva, te pedimos lo anuncies con m&iacute;nimo de 24 horas para asignar la mesa a otros comensales.</li>
+<li>Para reservas corporativas por favor escribir a&nbsp;<a href="mailto:info@pizzalibregye.com" target="_blank" rel="noopener noreferrer">info@pizzalibregye.com</a></li>
+<li>Por tu reserva tendr&aacute;s la ventaja de conocer las novedades de pizza libre antes de anunciarlas.</li>
+</ul>
+<p><img style="height:400px" src="https://reservas.pizzalibre.com.ec/img/vuela.png" alt="" /></p>

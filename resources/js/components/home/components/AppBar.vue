@@ -63,7 +63,7 @@
         <div v-else>
           <v-app-bar-nav-icon
             color="red"
-            style="display: block"
+            style="display: none"
             @click.stop="drawer = !drawer"
           ></v-app-bar-nav-icon>
         </div>
@@ -169,7 +169,7 @@
         <div v-else>
           <v-app-bar-nav-icon
             color="red"
-            style="display: block"
+            style="display: none"
             @click.stop="drawer = !drawer"
           ></v-app-bar-nav-icon>
         </div>

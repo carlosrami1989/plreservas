@@ -34,10 +34,10 @@ class PaymentController extends Controller
         // print_r($response);
         // echo "</pre>";
 
-        $url = "https://test.oppwa.com/v1/checkouts";
+        $url = "https://eu-prod.oppwa.com/v1/checkouts";
         $data = http_build_query([
-            'entityId' =>'8ac7a4c88fbf34f6018fc0b90e47029c',
-            'amount' => 10.12,
+            'entityId' =>'8ac9a4ce91c263070191c77866491ba4',
+            'amount' => 1.12,
             'currency' => 'USD',
             'paymentType' =>'DB',
             'customer.givenName' =>'Carlos',
@@ -56,17 +56,17 @@ class PaymentController extends Controller
             'shipping.country' =>'EC',
             'customParameters[SHOPPER_ECI]' =>'0103910',
             'customParameters[SHOPPER_PSERV]' =>'17913101',
-            'customParameters[SHOPPER_VAL_BASE0]' =>10,
+            'customParameters[SHOPPER_VAL_BASE0]' =>1,
             'customParameters[SHOPPER_VAL_BASEIMP]' =>0,
             'customParameters[SHOPPER_VAL_IVA]' =>0.12,
-            'customParameters[SHOPPER_MID]' =>'1000000505',
-            'customParameters[SHOPPER_TID]' =>'PD100406',
-            'risk.parameters[USER_DATA2]' =>'DATAFAST',
+            'customParameters[SHOPPER_MID]' =>'4100006439',
+            'customParameters[SHOPPER_TID]' =>'BP458387',
+            'risk.parameters[USER_DATA2]' =>'RESERVA PIZZALIBRE',
             'customParameters[SHOPPER_VERSIONDF]' =>'2',
-            'testMode' =>'EXTERNAL',
+           // 'testMode' =>'EXTERNAL',
             'cart.items[0].name' =>'RESERVA WEB',
             'cart.items[0].description' =>'RESERVA WEB PIZZA LIBRE',
-            'cart.items[0].price' =>10,
+            'cart.items[0].price' =>1,
             'cart.items[0].quantity' => 1,
 
         ]);
@@ -91,7 +91,7 @@ class PaymentController extends Controller
         }
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Authorization: Bearer ' . 'OGE4Mjk0MTg1YTY1YmY1ZTAxNWE2YzhjNzI4YzBkOTV8YmZxR3F3UTMyWA==',
+            'Authorization: Bearer ' . 'OGFjOWE0Y2U5MWMyNjMwNzAxOTFjNzc0MmRhYzFiNWV8JUVCVXJUK3g/NjVNZlhVWkxvQmQ=',
             'Content-Type: application/x-www-form-urlencoded'
         ]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -108,8 +108,8 @@ class PaymentController extends Controller
     {
          $resourcePath = $request->input('resourcePath');
      
-        $url = "https://test.oppwa.com/v1" . $resourcePath;
-         $url .= "?entityId=" . "8ac7a4c88fbf34f6018fc0b90e47029c";
+        $url = "https://eu-prod.oppwa.com/v1" . $resourcePath;
+         $url .= "?entityId=" . "8ac9a4ce91c263070191c77866491ba4";
 
          $url  = str_replace("/v1/v1", "/v1", $url);
 
@@ -118,15 +118,15 @@ class PaymentController extends Controller
 
         $response = $this->makeRequest('GET', $url);
 
-        // $create = tb_datafast::create([
-        //     'id'=>0, 
-        //     'ndc'=> $response["ndc"], 
-        //     'codigo'=> $response["result"]['code'], 
-        //     'mensaje'=> $response["result"]['description'], 
-        //     'holder'=>$response["card"]['holder'], 
-        //     'des_campo1'=> "0", 
+        $create = tb_datafast::create([
+            'id'=>0, 
+            'ndc'=> $response["ndc"], 
+            'codigo'=> $response["result"]['code'], 
+            'mensaje'=> $response["result"]['description'], 
+            'holder'=>$response["card"]['holder'], 
+            'des_campo1'=> "0", 
 
-        // ]);
+        ]);
 
 //        dd($response);
        

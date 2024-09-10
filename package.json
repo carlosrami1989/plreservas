@@ -27,6 +27,7 @@
     "dependencies": {
         "chart.js": "^2.9.4",
         "moment": "^2.30.1",
+        "sweetalert2": "^11.14.0",
         "utf8": "^3.0.0",
         "video.js": "^8.0.4",
         "vue-chartist": "^2.3.1",

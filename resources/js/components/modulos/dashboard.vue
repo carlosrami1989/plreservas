@@ -1,8 +1,21 @@
 <template>
   <div>
-    <v-img src="/img/pepita.jpg" aspect-ratio="2" contain>
-      <home-app-bar :user="this.$props.user" :invert="false" />
-    </v-img>
+    <home-app-bar :user="this.$props.user" :invert="false" />
+    <br>
+    <br>
+    <div v-if="!isMobile()">
+      <div class="d-flex flex-column justify-space-between align-center">
+      <v-img src="/img/pepita.jpg"  >    
+      </v-img>
+    </div>
+  </div>
+        <div v-else>
+          <div class="d-flex flex-column justify-space-between align-center">
+          <v-img src="/img/pepita.jpg"  class="ml-auto"  max-heigth="100%"  >    
+          </v-img>
+        </div>
+      </div>
+    
     <!-- <dash-menu> </dash-menu> -->
   </div>
 </template>
@@ -48,32 +61,16 @@ export default {
     // })
   },
   methods: {
-    saludar() {
-      // axios.post('/user', {
-      //   firstName: 'Fred',
-      //   lastName: 'Flintstone'
-      // })
-      // .then(function (response) {
-      //   console.log(response);
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
-      // let that = this;
-      //  let url ='http://192.168.8.73:8000/api/saluda2/';
-      //             axios.post(url,this.form)
-      //             .then(function(response) {
-      //                  that.vtext = esponse.data.saludo;
-      //                 console.log(response.data.saludo)
-      //             })
-      //             .catch(error => {
-      //                 Errores de validación
-      //             });
-      //post('http://192.168.8.73:8000/api/saluda2/'+this.form)
-      // const data = await fecth('http://192.168.8.73:8000/api/saluda2/'+this.form)
-      // const response = await data.json()
-      //console.log(response.saludo)
-      // this.vtext = response.saludo;
+    isMobile() {
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+      ) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
 };

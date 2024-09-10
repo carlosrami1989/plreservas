@@ -30,7 +30,7 @@
     @if ($statusResponse['result']['code'] == '000.100.110')
         <span>
         <a href="/"> Transaccion realizada con éxito</a>    
-        {{ print_r($statusResponse) }}
+       
        </span>
 
     @else
@@ -62,7 +62,7 @@ div span {
     text-align: center;
 }
 body {
-  background: url( "/img/fondo.jpg"); 
+  background: url( "/img/reservaok.png"); 
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0;

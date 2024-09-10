@@ -17,12 +17,13 @@
       justify="center"
       v-if="vshow1 === true"
     >
-      <v-col cols="12" sm="6" align="center" justify="center">
+      <v-col cols="11" sm="6" align="center" justify="center">
         <v-card
           color="rgb(220, 222, 225,0.7)"
           rounded="xl"
           elevation="15"
           class="text-md-center"
+          
         >
           <v-card-title primary-title class="justify-center">
             <v-img
@@ -69,7 +70,7 @@
       justify="center"
       v-if="vshow2 === true"
     >
-      <v-col cols="12" sm="6" align="center" justify="center">
+      <v-col cols="11" sm="6" align="center" justify="center">
         <v-card
           color="rgb(220, 222, 225,0.7)"
           rounded="xl"
@@ -155,7 +156,7 @@
       justify="center"
       v-if="vshow3 === true"
     >
-      <v-col cols="12" sm="6" align="center" justify="center">
+      <v-col cols="11" sm="6" align="center" justify="center">
         <v-card
           color="rgb(220, 222, 225,0.7)"
           rounded="xl"
@@ -220,7 +221,7 @@
       justify="center"
       v-if="vshow4 === true"
     >
-      <v-col cols="12" sm="6" align="center" justify="center">
+      <v-col cols="11" sm="6" align="center" justify="center">
         <v-card
           color="rgb(220, 222, 225,0.7)"
           rounded="xl"
@@ -234,7 +235,7 @@
           <v-card-text>
             <v-container>
               <v-row>
-                <v-col>
+                <v-col >
                   <vue-tel-input-vuetify
                     outlined
                     rounded
@@ -247,7 +248,7 @@
                     v-model="form.celular"
                   ></vue-tel-input-vuetify>
                 </v-col>
-                <v-col>
+                <v-col cols="12" sm="6" md="6">
                   <v-text-field
                     outlined
                     rounded
@@ -261,7 +262,7 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col>
+                <v-col cols="12" sm="6" md="6">
                   <v-text-field
                     outlined
                     rounded
@@ -272,7 +273,7 @@
                     required
                   ></v-text-field>
                 </v-col>
-                <v-col>
+                <v-col cols="12" sm="6" md="6">
                   <v-text-field
                     outlined
                     rounded
@@ -280,6 +281,18 @@
                     :counter="25"
                     :rules="nameRules"
                     label="Apellidos"
+                    required
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    outlined
+                    rounded
+                    v-model="form.direccion"
+                     
+                    label="Dirección"
                     required
                   ></v-text-field>
                 </v-col>
@@ -344,7 +357,7 @@
       justify="center"
       v-if="vshow5 === true"
     >
-      <v-col cols="12" sm="6" align="center" justify="center"   v-if="registrar.numero_persona >10">
+      <v-col cols="11" sm="6" align="center" justify="center"   v-if="registrar.numero_persona >10">
         <v-card
           color="rgb(220, 222, 225,0.7)"
           rounded="xl"
@@ -400,8 +413,8 @@
           </v-card-text>
 
           <v-card-actions class="justify-center">
-            <v-btn color="success" @click="backQuintoLayaout()">Atras</v-btn>
-
+            <!-- <v-btn color="success" @click="backQuintoLayaout()">Atras</v-btn> -->
+<!-- 
             <v-btn
               class="ma-2"
               :loading="loading"
@@ -415,11 +428,106 @@
                   <v-icon light>mdi-cached</v-icon>
                 </span>
               </template>
-            </v-btn>
+            </v-btn> -->
           </v-card-actions>
           <div class="footer">
-              <p>Footer</p>
+              <p> <a href="#"  @click.prevent="registrar.terminos = true"  >Términos y Condiciones</a>|<a href="#" @click.prevent="registrar.politicas = true">Políticas de Privacidad</a>|<a href="#" @click.prevent="registrar.contacto = true">Contactos</a>  </p>
             </div>
+            <v-dialog v-model="registrar.terminos" width="40%">
+            <v-card>
+              <v-card-title class="text-h6">   Términos y condiciones </v-card-title>
+              <v-card-text>
+               
+                <ul>
+                  <li>
+                    El tiempo de espera para tu reserva es de 15 min. Posterior a eso liberaremos la mesa para que otros comensales puedan disfrutar.
+                  </li>
+                  <li>
+                    Para la asignación de mesas por reservas grupales deben estar presentes mínimo el 70% del grupo.
+                  </li>
+                  <li>El valor del abono es consumible durante la fecha de la reserva.</li>
+                  <li>
+                    Si deseas cancelar la reserva, te pedimos lo anuncies con mínimo de 24 horas para asignar la mesa a otros comensales.
+                  </li>
+                  <li>Para reservas corporativas por favor escribir a info@pizzalibregye.com</li>
+                  <li>Por tu reserva tendrás la ventaja de conocer las novedades de pizza libre antes de anunciarlas.</li>
+                </ul>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn text color="purple" @click="registrar.terminos = false">
+                  Ok
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
+          <v-dialog v-model="registrar.politicas" width="40%">
+            <v-card>
+              <v-card-title class="text-h6">   Términos y condiciones </v-card-title>
+              <v-card-text>
+               
+                <p><strong>POLÍTICA DE PRIVACIDAD</strong></p>
+<p>El presente Política de Privacidad establece los términos en que Pizza Libre usa y protege la información que es proporcionada por sus usuarios al momento de utilizar su sitio web. Esta compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le pedimos llenar los campos de información personal con la cual usted pueda ser identificado, lo hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento. Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.</p>
+<p><strong>Información que es recogida</strong></p>
+<p>Nuestro sitio web podrá recoger información personal por ejemplo: Nombre,&nbsp; información de contacto como&nbsp; su dirección de correo electrónica e información demográfica. Así mismo cuando sea necesario podrá ser requerida información específica para procesar algún pedido o realizar una entrega o facturación.</p>
+<p><strong>Uso de la información recogida</strong></p>
+<p>Nuestro sitio web emplea la información con el fin de proporcionar el mejor servicio posible, particularmente para mantener un registro de usuarios, de pedidos en caso que aplique, y mejorar nuestros productos y servicios. &nbsp;Es posible que sean enviados correos electrónicos periódicamente a través de nuestro sitio con ofertas especiales, nuevos productos y otra información publicitaria que consideremos relevante para usted o que pueda brindarle algún beneficio, estos correos electrónicos serán enviados a la dirección que usted proporcione y podrán ser cancelados en cualquier momento.</p>
+<p>Pizza Libre está altamente comprometido para cumplir con el compromiso de mantener su información segura. Usamos los sistemas más avanzados y los actualizamos constantemente para asegurarnos que no exista ningún acceso no autorizado.</p>
+<p><strong>Cookies</strong></p>
+<p>Una cookie se refiere a un fichero que es enviado con la finalidad de solicitar permiso para almacenarse en su ordenador, al aceptar dicho fichero se crea y la cookie sirve entonces para tener información respecto al tráfico web, y también facilita las futuras visitas a una web recurrente. Otra función que tienen las cookies es que con ellas las web pueden reconocerte individualmente y por tanto brindarte el mejor servicio personalizado de su web.</p>
+<p>Nuestro sitio web emplea las cookies para poder identificar las páginas que son visitadas y su frecuencia. Esta información es empleada únicamente para análisis estadístico y después la información se elimina de forma permanente. Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin embargo las cookies ayudan a proporcionar un mejor servicio de los sitios web, estás no dan acceso a información de su ordenador ni de usted, a menos de que usted así lo quiera y la proporcione directamente <a href="https://noticiasatleticodemadrid.es/" target="_blank">noticias</a>. Usted puede aceptar o negar el uso de cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues sirve para tener un mejor servicio web. También usted puede cambiar la configuración de su ordenador para declinar las cookies. Si se declinan es posible que no pueda utilizar algunos de nuestros servicios.</p>
+<p><strong>Enlaces a Terceros</strong></p>
+<p>Este sitio web pudiera contener en laces a otros sitios que pudieran ser de su interés. Una vez que usted de clic en estos enlaces y abandone nuestra página, ya no tenemos control sobre al sitio al que es redirigido y por lo tanto no somos responsables de los términos o privacidad  ni de la protección de sus datos en esos otros sitios terceros. Dichos sitios están sujetos a sus propias políticas de privacidad por lo cual es recomendable que los consulte para confirmar que usted está de acuerdo con estas.</p>
+<p><strong>Control de su información personal</strong></p>
+<p>En cualquier momento usted puede restringir la recopilación o el uso de la información personal que es proporcionada a nuestro sitio web.&nbsp; Cada vez que se le solicite rellenar un formulario, como el de alta de usuario, puede marcar o desmarcar la opción de recibir información por correo electrónico. &nbsp;En caso de que haya marcado la opción de recibir nuestro boletín o publicidad usted puede cancelarla en cualquier momento.</p>
+<p>Esta compañía no venderá, cederá ni distribuirá la información personal que es recopilada sin su consentimiento, salvo que sea requerido por un juez con un orden judicial.</p>
+<p>Pizza Libre Se reserva el derecho de cambiar los términos de la presente Política de Privacidad en cualquier momento.</p>
+ 
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn text color="purple" @click="registrar.politicas = false">
+                  Ok
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <v-dialog v-model="registrar.contacto" width="40%">
+            <v-card>
+              <v-card-title class="text-h6">   Contactos </v-card-title>
+              <v-card-text>
+               
+                
+                 
+                 <a href="https://wa.me/593967376825" target="_blank" rel="noopener noreferrer"> 
+                  <v-icon color="green">mdi-whatsapp</v-icon> 
+                  Pizza Libre Arcos Plaza 
+                </a>
+                 <br>
+                 <a href="https://wa.me/593998268379" target="_blank" rel="noopener noreferrer"> 
+                  <v-icon color="green">mdi-whatsapp</v-icon> 
+                  Pizza Libre Urdesa 
+                </a>
+                    <br>
+                    <a href="https://wa.me/593997154773" target="_blank" rel="noopener noreferrer"> 
+                  <v-icon color="green">mdi-whatsapp</v-icon> 
+                  Pizza Libre Buijo
+                </a>
+                  <br>
+                  <a href="#"   rel="noopener noreferrer"> 
+                  <v-icon color="primary">mdi-email</v-icon> 
+                  hola@pizzalibregye.com
+                </a>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn text color="purple" @click="registrar.contacto = false">
+                  Ok
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-card>
         <!-- <span
           >Para reservas mayores a 10 personas, por favor contáctarse al número
@@ -427,7 +535,7 @@
         > -->
       </v-col>
       <!-- v-else -->
-      <v-col cols="12" sm="6" align="center" justify="center" v-else>
+      <v-col cols="11" sm="6" align="center" justify="center" v-else>
         <v-card
           color="rgb(220, 222, 225,0.7)"
           rounded="xl"
@@ -573,7 +681,7 @@
       justify="center"
       v-if="vshow6 === true"
     >
-      <v-col cols="12" sm="6">
+      <v-col cols="11" sm="6">
         <v-card
           color="rgb(220, 222, 225,0.8)"
           rounded="xl"
@@ -648,10 +756,7 @@
           </v-card-actions>
          
         </v-card>
-        <span
-          >Para reservas mayores a 10 personas, por favor contáctarse al número
-          xxxxxxxxxx.</span
-        >
+       
       </v-col>
     </v-row>
   </div>
@@ -674,8 +779,8 @@ export default {
       vshow1: false,
       vshow2: false,
       vshow3: false,
-      vshow4: false,
-      vshow5: true,
+      vshow4: true,
+      vshow5: false,
       vshow6: false,
       vshow7: false,
       snackbar: false,
@@ -750,7 +855,27 @@ export default {
         usuario: "",
         password: "",
         comentario: "",
+        direccion: "",
         correo_electronico: "",
+      },
+      datafast:{
+        amount:0,
+        givenName:0,
+        middleName:0,
+        surname:0,
+        ip:0,
+        merchantCustomerId:0,
+        merchantTransactionId:0,
+        email:0,
+        identificationDocId:0,
+        phone:0,
+        street1:0,
+        country:0,
+        SHOPPER_VAL_BASE0:0,
+        SHOPPER_VAL_BASEIMP:0,
+        SHOPPER_VAL_IVA:0,
+        price:0,
+        quantity:0,
       },
       ListHora: [],
       ListaHoraReservada: [],
@@ -858,13 +983,14 @@ export default {
       axios
         .post(url, ListaEnviar)
         .then((response) => {
+          //**  */
          
-          console.log("crearpago",response.data.data );
+         // console.log("crearpago",response.data.data );
           // ListaActual.push(response.data.data);
           this.ListaId = response.data.data.id;
-          console.log("crearpagoid", this.ListaId );
+         // console.log("crearpagoid", this.ListaId );
           let recaptchaScript = document.createElement('script');
-      recaptchaScript.setAttribute('src', 'https://test.oppwa.com/v1/paymentWidgets.js?checkoutId='+this.ListaId )
+      recaptchaScript.setAttribute('src', 'https://eu-prod.oppwa.com/v1/paymentWidgets.js?checkoutId='+this.ListaId )
       document.head.appendChild(recaptchaScript);
      // console.log("crearpago",response.data.data );
           // response.data.data.forEach((element) => {
@@ -872,15 +998,7 @@ export default {
           //   objeto.horthisa_reserva = element.hora_reserva;
           //   ListaActual.push(objeto);
           // });
-          var div = document.createElement("div");
-div.style.width = "500px";
-    div.style.height0 = "500px";
-    div.style.background = "red";
-    div.style.color = "white";
-    div.innerHTML = "HELLO";
-    div.classList.add("paymentWidgets")
-
-    document.body.appendChild(div);
+ 
     this.registrar.transaccion = this.ListaId;
     this.PostGrabar();
 
@@ -1375,6 +1493,7 @@ div.style.width = "500px";
 }
 .letraSpam { 
    font-size: 22px !important;
+   line-height: 1em;
  }
  .footer {
   
