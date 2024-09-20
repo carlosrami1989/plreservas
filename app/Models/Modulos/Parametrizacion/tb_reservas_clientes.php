@@ -71,6 +71,10 @@ class tb_reservas_clientes extends Model
         ->whereColumn('transaccion', 'ndc')
         ->limit(1);
 
+        $codigo_d = tb_datafast::select('codigo')
+        ->whereColumn('transaccion', 'ndc')
+        ->limit(1);
+
  
         $query->addSelect([
             'sucursal' => $sucursal,
@@ -79,6 +83,7 @@ class tb_reservas_clientes extends Model
             'nombres' => $nombres,
             'correo' => $correo,
             'datafast' => $datafast,
+            'codigo_d' => $codigo_d,
             
         ]);
     }

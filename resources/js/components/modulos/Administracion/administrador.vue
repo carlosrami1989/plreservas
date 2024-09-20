@@ -406,6 +406,67 @@ export default {
     //this.GenerarToken();
   },
   methods: {
+    GenerarModalEliminar(item) {
+      item.estado = 0;
+      let url =
+        this.$store.getters.getRuta +
+        "/modulos/admision/paciente/createBlindado";
+
+      this.$swal
+        .fire({
+          title: "Esta seguro de eliminar?",
+          text: "Una vez eliminado no se puede revertir",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Si, eliminar!",
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            axios
+              .post(url, item)
+              .then((response) => {
+                console.log(response.data.data);
+                //  this.$swal("Fuelcorp!!!", "xx", "error");
+                this.$swal.fire({
+                  title: "Eliminado!",
+                  text: "Se ha eliminado correctamente el item",
+                  icon: "success",
+                });
+                // this.mensajeAler("Tarea registrada con éxito", true);
+                this.dialog = false;
+                this.consultasTareas();
+                this.tarea = {
+                  id: 0,
+                  estacion: 0,
+                  estacion: 0,
+                  fecha_emision: new Date(
+          Date.now() - new Date().getTimezoneOffset() * 60000
+        )
+          .toISOString()
+          .substr(0, 10),
+                  valor: 0,
+                  deposito_real: 0,
+                  valor_enviarse: 0,
+                  diferencia: "",
+                  detalle: "",
+                };
+                //  this.handleCreateEvent();
+                // this.itemsAdicional = response.data.data;
+              })
+              .catch((error) => {
+                let objeto = [];
+                objeto = Object.values(error.response.data.errors);
+              });
+          }
+        });
+
+     
+      // return;
+
+      //this.desproducto = tarea.producto.id:
+    },
     GetHoraFecha() {
       console.log("click");
       let ListaActual = [];

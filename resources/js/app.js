@@ -15,6 +15,11 @@ import 'vuetify/dist/vuetify.min.css';
 import store from "./vueX/store";
 import "./plugins";
 
+import VueSweetalert2 from 'vue-sweetalert2';
+
+// If you don't need the styles, do not connect
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 //import Paintable from 'vue-paintable';
 
 import VueVideoPlayer from 'vue-video-player'
@@ -61,6 +66,11 @@ Vue.use(VueVideoPlayer, /* {
     vuetify,
 });
 
+const options = {
+    confirmButtonColor: '#41b882',
+    cancelButtonColor: '#ff7674',
+  };
+  Vue.use(VueSweetalert2, options);
 Vue.component(
     "home",
     require("./components/home/index").default

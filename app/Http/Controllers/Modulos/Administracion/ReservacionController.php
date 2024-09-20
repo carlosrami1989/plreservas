@@ -11,6 +11,7 @@ use App\Models\Modulos\Parametrizacion\tb_cliente;
 use App\Models\Modulos\Parametrizacion\tb_reservas_clientes;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use PhpOffice\PhpSpreadsheet\Calculation\TextData\Trim;
 use stdClass;
 use Mail;
 use App\Mail\ReservaCallReceived;
@@ -21,6 +22,33 @@ use Exception;
 
 class ReservacionController extends Controller
 {
+    public function GetReservaTransaccion()
+    {
+        try {
+            $user = Auth::user();
+
+            $lista = tb_reservas_clientes::latest('id')->first();
+            
+            $sumar = $lista->id + 1;
+            $valor = '00000000000'.$sumar;
+            $valor_dos = '00000'.$sumar;
+            $valor_s =  substr($valor,strlen(trim($sumar)),strlen(trim($valor)));
+            $valor_trans =  substr($valor_dos,strlen(trim($sumar)),strlen(trim($valor_dos)));
+
+            
+
+           // $con =strlen( trim($valor)); 
+            
+ 
+            
+
+
+
+            return response()->json(['merchantCustomerId' => $valor_s,'merchantTransactionId' => $valor_trans], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
     public function UserAdmin($usuario,$password)
     {
         try {
@@ -53,12 +81,12 @@ class ReservacionController extends Controller
 
             if ($user->profesion == 0) {
                 # code...
-                $lista = tb_reservas_clientes::DatosReserva()
+                $lista = tb_reservas_clientes::DatosReserva()->where("estado", 1)
                 ->get();
                              
             }else{
                 $lista = tb_reservas_clientes::where("id_sucursal", $user->profesion)
-                ->DatosReserva()
+                ->where("estado", 1)->DatosReserva()
                 ->get();
             }
 
@@ -90,6 +118,7 @@ class ReservacionController extends Controller
         try {
             $listaReserva = tb_reservas_clientes::select("hora_reserva")->whereDate('fecha_reserva', $fecha)
             ->where("id_sucursal", $id_sucursal)
+            ->where("estado", 1)
             ->where("id_mesa",$id_mesa)->get();
 
             // $startTime = date("Y-m-d 12:00:00");
@@ -164,6 +193,39 @@ class ReservacionController extends Controller
         ], 200);
         } catch (Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
+    public function EliminarReserva(Request $request)
+    {
+
+        try {
+            //code.
+            $fechaActual = Carbon::now();
+            $user = Auth::user();
+            // $var = tbIngresoInfo::All();
+           // return  response()->json(['data' =>$request->all()], 200);
+            $crear = tb_reservas_clientes::UpdateOrCreate(
+                [
+                    'id' => $request->id,
+                ],
+                [
+                     
+                    'estado' => 2,
+                ]
+
+            );
+         
+             
+            $wasCreated = $crear->wasRecentlyCreated;
+
+
+
+
+            return response()->json(['mensaje' => $crear,
+            'data' => $wasCreated], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+            //throw $th;
         }
     }
     public function PostValidarUsuario(Request $request)
@@ -276,6 +338,7 @@ class ReservacionController extends Controller
             'cedula' => 'required|not_in:0',
             'correo_electronico' => 'required|not_in:0|email',
             'celular' => 'required|not_in:0',
+            'direccion' => 'required|not_in:0',
             
         ]);
         try {

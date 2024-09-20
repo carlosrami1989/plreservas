@@ -27,15 +27,17 @@
 
 <body >
     <div style="text-align:center;">
-    @if ($statusResponse['result']['code'] == '000.100.110')
+    
+    
+    @if ($statusResponse['result']['code'] == '000.000.000')
         <span>
         <a href="/"> Transaccion realizada con éxito</a>    
-       
+         
        </span>
 
     @else
-    <span><a href="/"></a>Error a realizar la reserva</a></span>
-    {{ print_r($statusResponse) }}
+    <span><a href="/"></a>Error a realizar la reserva </a></span>
+     
     @endif 
    
        

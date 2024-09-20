@@ -33,7 +33,7 @@
               </v-img>
             </v-card-title>
             <v-card-title primary-title class="justify-center">
-              Ingresa Usuario y Contraseña
+              Ingresa Usuario y Contraseña a
             </v-card-title>
            <v-card-text>
             <v-text-field
@@ -141,6 +141,46 @@
               :search="search"
               class="elevation-1"
             >
+            <template v-slot:[`item.celular`]="{ item }">
+              
+               <!-- {{ numero_w = item.celular.replace(/\s/g, '').replace("+", "") }} -->
+                 
+                
+              
+               <a :href="`https://wa.me/${item.celular.replace(/\s/g, '').replace('+', '')}`" target="_blank" rel="noopener noreferrer"> 
+                <v-icon color="green">mdi-whatsapp</v-icon> 
+                  {{ item.celular  }}
+                </a>
+              </template>
+
+            <template v-slot:[`item.datafast`]="{ item }">
+              <v-chip
+                color="red"
+               v-if="item.numero_persona >10 && item.datafast == null"
+              >
+                Transaccion incompleta
+              </v-chip>
+              <v-chip
+                color="amber"
+               v-else-if="item.numero_persona <=10"
+              >
+                Transaccion sin pago
+              </v-chip>
+
+              <v-chip
+                color="red"
+               v-else-if="item.codigo_d != '000.000.000'"
+              >
+              {{ item.datafast }}
+              </v-chip>
+              <v-chip
+                color="success"
+               v-else
+              >
+                {{ item.datafast }}
+              </v-chip>
+              </template>
+            
               <template v-slot:[`item.Acciones`]="{ item }">
                 <v-icon
                   medium
@@ -149,6 +189,14 @@
                   @click="GenerarModalSeguimientoVisulizar(item)"
                 >
                   mdi-pencil
+                </v-icon>
+                <v-icon
+                  medium
+                  color="red"
+                  
+                  @click="GenerarModalEliminar(item)"
+                >
+                mdi-delete
                 </v-icon>
               </template>
             </v-data-table>
@@ -247,7 +295,7 @@
                     <div
                       v-for="tag in ListHora"
                       :key="tag.hora"
-                      :value="tag.hora"
+                      :value="tag.hora" 
                     >
                       <v-chip
                         color="success"
@@ -473,16 +521,16 @@
                     { text: "total", value: "total_registro", class: "orange lighten-1 borderWidth:8" },
                 
                 ],
-      
+      numero_w:0,
       ListaTotalRegistradoIdentificacion:[],
       headers: [
-        {
-          text: "Código",
-          align: "start",
+        // {
+        //   text: "Código",
+        //   align: "start",
 
-          value: "id",
-          class: "primary white--text",
-        },
+        //   value: "id",
+        //   class: "primary white--text",
+        // },
         {
           text: "Local",
           align: "start",
@@ -508,6 +556,12 @@
         {
           text: "Celular",
           value: "celular",
+          class: "indigo darken-2 white--text",
+        },
+
+        {
+          text: "Nº Person.",
+          value: "numero_persona",
           class: "indigo darken-2 white--text",
         },
          
@@ -586,6 +640,76 @@
       //   }
     },
     methods: {
+      GenerarModalEliminar(item) {
+      item.estado = 0;
+      let url =
+        this.$store.getters.getRuta +
+        "/modulos/admision/reservas/EliminarReserva";
+
+      this.$swal
+        .fire({
+          title: "Esta seguro de eliminar?",
+          text: "Una vez eliminado no se puede revertir",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Si, eliminar!",
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            axios
+              .post(url, item)
+              .then((response) => {
+                console.log(response.data.data);
+                //  this.$swal("Fuelcorp!!!", "xx", "error");
+                this.$swal.fire({
+                  title: "Eliminado!",
+                  text: "Se ha eliminado correctamente el item",
+                  icon: "success",
+                });
+                // this.mensajeAler("Tarea registrada con éxito", true);
+                this.dialog = false;
+                this.GetReservas();
+                this.registrar= {
+          id: 0,
+          id_empresa: 1,
+          id_sucursal: "",
+          id_mesa: "",
+          numero_persona: "",
+          id_cliente_reserva: "",
+          fecha_reserva: new Date(
+            Date.now() - new Date().getTimezoneOffset() * 60000
+          )
+            .toISOString()
+            .substr(0, 10),
+          hora_reserva: "",
+          hora_estado: "",
+          descripcion: "",
+          celular: "",
+          pago: 0,
+          transaccion: "",
+          valor: 0,
+          des_local: "",
+          des_mesa: "",
+          terminos: false,
+          terminoCheck: false,
+        };
+                //  this.handleCreateEvent();
+                // this.itemsAdicional = response.data.data;
+              })
+              .catch((error) => {
+                let objeto = [];
+                objeto = Object.values(error.response.data.errors);
+              });
+          }
+        });
+
+     
+      // return;
+
+      //this.desproducto = tarea.producto.id:
+    },
       logout() {
       window.location.replace("/logout");
     },
@@ -631,6 +755,8 @@
            
           })
           .catch((error) => {
+            window.location.replace("/logout");
+            window.location.replace("/admin");
             console.log("aqui", error);
           });
 
@@ -784,6 +910,8 @@
       axios
         .get(url)
         .then((response) => {
+          console.log("lista",response.data.data);
+          
           this.ListaReservas = response.data.data;
         })
         .catch((error) => {

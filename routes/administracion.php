@@ -135,10 +135,11 @@ Route::group(['prefix' => 'modulos/admision'], function () {
         Route::get('GetFechaReserva/{fecha}/{local}/{mesa}', 'ReservacionController@GetFechaReserva');
         Route::get('GetCliente/{cedula}', 'ReservacionController@GetCliente');
         Route::get('loginAdmin/{usuario}/{password}', 'ReservacionController@UserAdmin');
-
-
+        Route::get('GetSucursal', 'ReservacionController@GetSucursal');
+        Route::post('EliminarReserva', 'ReservacionController@EliminarReserva');
         // datafast
         Route::post('SetGenerarPago', 'PaymentController@createPayment');
+        Route::get('GetLasID', 'ReservacionController@GetReservaTransaccion');
         Route::get('SetEstado', 'PaymentController@paymentStatus');
 
 

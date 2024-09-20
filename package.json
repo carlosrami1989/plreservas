@@ -33,6 +33,7 @@
         "vue-chartist": "^2.3.1",
         "vue-paintable": "^2.1.5",
         "vue-router": "^3.4.8",
+        "vue-sweetalert2": "^5.0.11",
         "vue-tel-input-vuetify": "^1.5.3",
         "vue-video-player": "^6.0.0",
         "vuetify": "^2.5.6",

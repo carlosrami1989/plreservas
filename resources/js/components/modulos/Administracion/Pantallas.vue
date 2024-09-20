@@ -23,7 +23,6 @@
           rounded="xl"
           elevation="15"
           class="text-md-center"
-          
         >
           <v-card-title primary-title class="justify-center">
             <v-img
@@ -60,7 +59,6 @@
         <!-- <span
           >Para reservas mayores a 10 personas, por favor contáctarse al número
           xxxxxxxxxx.</span -->
-        
       </v-col>
     </v-row>
     <!-- cantidad de persona -->
@@ -214,7 +212,7 @@
         > -->
       </v-col>
     </v-row>
-<!-- datos personales -->
+    <!-- datos personales -->
     <v-row
       class="bgimagen"
       align="center"
@@ -235,7 +233,7 @@
           <v-card-text>
             <v-container>
               <v-row>
-                <v-col >
+                <v-col>
                   <vue-tel-input-vuetify
                     outlined
                     rounded
@@ -291,7 +289,6 @@
                     outlined
                     rounded
                     v-model="form.direccion"
-                     
                     label="Dirección"
                     required
                   ></v-text-field>
@@ -350,22 +347,27 @@
         > -->
       </v-col>
     </v-row>
-<!-- datos tarjeta -->
+    <!-- datos tarjeta -->
     <v-row
       class="bgimagen"
       align="center"
       justify="center"
       v-if="vshow5 === true"
     >
-      <v-col cols="11" sm="6" align="center" justify="center"   v-if="registrar.numero_persona >10">
+      <v-col
+        cols="11"
+        sm="6"
+        align="center"
+        justify="center"
+        v-if="registrar.numero_persona > 10"
+      >
         <v-card
           color="rgb(220, 222, 225,0.7)"
           rounded="xl"
           elevation="15"
           class="text-md-center"
-        
         >
-        <v-card-text background-color="success">
+          <v-card-text background-color="success">
             <v-container>
               <v-row>
                 <v-col>
@@ -391,7 +393,9 @@
               <v-row>
                 <v-col>
                   <span class="letraSpam"><b>Nombre de la reserva</b> </span>
-                  <span class="letraSpam">{{ form.nombres }} {{ form.apellidos }} </span>
+                  <span class="letraSpam"
+                    >{{ form.nombres }} {{ form.apellidos }}
+                  </span>
                 </v-col>
               </v-row>
               <v-row>
@@ -400,6 +404,13 @@
                   <span class="letraSpam">{{ registrar.numero_persona }} </span>
                 </v-col>
               </v-row>
+              <v-row>
+                <v-col>
+                  <span class="letraSpam"><b>Total a pagar </b></span>
+                  <span class="letraSpam">{{ registrar.valor }} </span>
+                </v-col>
+              </v-row>
+              
             </v-container>
           </v-card-text>
           <v-card-title primary-title class="justify-center">
@@ -407,14 +418,16 @@
           </v-card-title>
 
           <v-card-text>
-            <form  :action="'/modulos/admision/reservas/SetEstado'" data-brands="VISA MASTER" class="paymentWidgets"
-     >
-      </form>
+            <form
+              :action="'/modulos/admision/reservas/SetEstado'"
+              data-brands="VISA MASTER"
+              class="paymentWidgets"
+            ></form>
           </v-card-text>
 
           <v-card-actions class="justify-center">
             <!-- <v-btn color="success" @click="backQuintoLayaout()">Atras</v-btn> -->
-<!-- 
+            <!-- 
             <v-btn
               class="ma-2"
               :loading="loading"
@@ -431,26 +444,48 @@
             </v-btn> -->
           </v-card-actions>
           <div class="footer">
-              <p> <a href="#"  @click.prevent="registrar.terminos = true"  >Términos y Condiciones</a>|<a href="#" @click.prevent="registrar.politicas = true">Políticas de Privacidad</a>|<a href="#" @click.prevent="registrar.contacto = true">Contactos</a>  </p>
-            </div>
-            <v-dialog v-model="registrar.terminos" width="40%">
+            <p>
+              <a href="#" @click.prevent="registrar.terminos = true"
+                >Términos y Condiciones</a
+              >|<a href="#" @click.prevent="registrar.politicas = true"
+                >Políticas de Privacidad</a
+              >|<a href="#" @click.prevent="registrar.contacto = true"
+                >Contactos</a
+              >
+            </p>
+          </div>
+          <v-dialog v-model="registrar.terminos" width="40%">
             <v-card>
-              <v-card-title class="text-h6">   Términos y condiciones </v-card-title>
+              <v-card-title class="text-h6">
+                Términos y condiciones
+              </v-card-title>
               <v-card-text>
-               
                 <ul>
                   <li>
-                    El tiempo de espera para tu reserva es de 15 min. Posterior a eso liberaremos la mesa para que otros comensales puedan disfrutar.
+                    El tiempo de espera para tu reserva es de 15 min. Posterior
+                    a eso liberaremos la mesa para que otros comensales puedan
+                    disfrutar.
                   </li>
                   <li>
-                    Para la asignación de mesas por reservas grupales deben estar presentes mínimo el 70% del grupo.
+                    Para la asignación de mesas por reservas grupales deben
+                    estar presentes mínimo el 70% del grupo.
                   </li>
-                  <li>El valor del abono es consumible durante la fecha de la reserva.</li>
                   <li>
-                    Si deseas cancelar la reserva, te pedimos lo anuncies con mínimo de 24 horas para asignar la mesa a otros comensales.
+                    El valor del abono es consumible durante la fecha de la
+                    reserva.
                   </li>
-                  <li>Para reservas corporativas por favor escribir a info@pizzalibregye.com</li>
-                  <li>Por tu reserva tendrás la ventaja de conocer las novedades de pizza libre antes de anunciarlas.</li>
+                  <li>
+                    Si deseas cancelar la reserva, te pedimos lo anuncies con
+                    mínimo de 24 horas para asignar la mesa a otros comensales.
+                  </li>
+                  <li>
+                    Para reservas corporativas por favor escribir a
+                    info@pizzalibregye.com
+                  </li>
+                  <li>
+                    Por tu reserva tendrás la ventaja de conocer las novedades
+                    de pizza libre antes de anunciarlas.
+                  </li>
                 </ul>
               </v-card-text>
               <v-card-actions>
@@ -464,26 +499,116 @@
 
           <v-dialog v-model="registrar.politicas" width="40%">
             <v-card>
-              <v-card-title class="text-h6">   Términos y condiciones </v-card-title>
+              <v-card-title class="text-h6">
+                Términos y condiciones
+              </v-card-title>
               <v-card-text>
-               
                 <p><strong>POLÍTICA DE PRIVACIDAD</strong></p>
-<p>El presente Política de Privacidad establece los términos en que Pizza Libre usa y protege la información que es proporcionada por sus usuarios al momento de utilizar su sitio web. Esta compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le pedimos llenar los campos de información personal con la cual usted pueda ser identificado, lo hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento. Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.</p>
-<p><strong>Información que es recogida</strong></p>
-<p>Nuestro sitio web podrá recoger información personal por ejemplo: Nombre,&nbsp; información de contacto como&nbsp; su dirección de correo electrónica e información demográfica. Así mismo cuando sea necesario podrá ser requerida información específica para procesar algún pedido o realizar una entrega o facturación.</p>
-<p><strong>Uso de la información recogida</strong></p>
-<p>Nuestro sitio web emplea la información con el fin de proporcionar el mejor servicio posible, particularmente para mantener un registro de usuarios, de pedidos en caso que aplique, y mejorar nuestros productos y servicios. &nbsp;Es posible que sean enviados correos electrónicos periódicamente a través de nuestro sitio con ofertas especiales, nuevos productos y otra información publicitaria que consideremos relevante para usted o que pueda brindarle algún beneficio, estos correos electrónicos serán enviados a la dirección que usted proporcione y podrán ser cancelados en cualquier momento.</p>
-<p>Pizza Libre está altamente comprometido para cumplir con el compromiso de mantener su información segura. Usamos los sistemas más avanzados y los actualizamos constantemente para asegurarnos que no exista ningún acceso no autorizado.</p>
-<p><strong>Cookies</strong></p>
-<p>Una cookie se refiere a un fichero que es enviado con la finalidad de solicitar permiso para almacenarse en su ordenador, al aceptar dicho fichero se crea y la cookie sirve entonces para tener información respecto al tráfico web, y también facilita las futuras visitas a una web recurrente. Otra función que tienen las cookies es que con ellas las web pueden reconocerte individualmente y por tanto brindarte el mejor servicio personalizado de su web.</p>
-<p>Nuestro sitio web emplea las cookies para poder identificar las páginas que son visitadas y su frecuencia. Esta información es empleada únicamente para análisis estadístico y después la información se elimina de forma permanente. Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin embargo las cookies ayudan a proporcionar un mejor servicio de los sitios web, estás no dan acceso a información de su ordenador ni de usted, a menos de que usted así lo quiera y la proporcione directamente <a href="https://noticiasatleticodemadrid.es/" target="_blank">noticias</a>. Usted puede aceptar o negar el uso de cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues sirve para tener un mejor servicio web. También usted puede cambiar la configuración de su ordenador para declinar las cookies. Si se declinan es posible que no pueda utilizar algunos de nuestros servicios.</p>
-<p><strong>Enlaces a Terceros</strong></p>
-<p>Este sitio web pudiera contener en laces a otros sitios que pudieran ser de su interés. Una vez que usted de clic en estos enlaces y abandone nuestra página, ya no tenemos control sobre al sitio al que es redirigido y por lo tanto no somos responsables de los términos o privacidad  ni de la protección de sus datos en esos otros sitios terceros. Dichos sitios están sujetos a sus propias políticas de privacidad por lo cual es recomendable que los consulte para confirmar que usted está de acuerdo con estas.</p>
-<p><strong>Control de su información personal</strong></p>
-<p>En cualquier momento usted puede restringir la recopilación o el uso de la información personal que es proporcionada a nuestro sitio web.&nbsp; Cada vez que se le solicite rellenar un formulario, como el de alta de usuario, puede marcar o desmarcar la opción de recibir información por correo electrónico. &nbsp;En caso de que haya marcado la opción de recibir nuestro boletín o publicidad usted puede cancelarla en cualquier momento.</p>
-<p>Esta compañía no venderá, cederá ni distribuirá la información personal que es recopilada sin su consentimiento, salvo que sea requerido por un juez con un orden judicial.</p>
-<p>Pizza Libre Se reserva el derecho de cambiar los términos de la presente Política de Privacidad en cualquier momento.</p>
- 
+                <p>
+                  El presente Política de Privacidad establece los términos en
+                  que Pizza Libre usa y protege la información que es
+                  proporcionada por sus usuarios al momento de utilizar su sitio
+                  web. Esta compañía está comprometida con la seguridad de los
+                  datos de sus usuarios. Cuando le pedimos llenar los campos de
+                  información personal con la cual usted pueda ser identificado,
+                  lo hacemos asegurando que sólo se empleará de acuerdo con los
+                  términos de este documento. Sin embargo esta Política de
+                  Privacidad puede cambiar con el tiempo o ser actualizada por
+                  lo que le recomendamos y enfatizamos revisar continuamente
+                  esta página para asegurarse que está de acuerdo con dichos
+                  cambios.
+                </p>
+                <p><strong>Información que es recogida</strong></p>
+                <p>
+                  Nuestro sitio web podrá recoger información personal por
+                  ejemplo: Nombre,&nbsp; información de contacto como&nbsp; su
+                  dirección de correo electrónica e información demográfica. Así
+                  mismo cuando sea necesario podrá ser requerida información
+                  específica para procesar algún pedido o realizar una entrega o
+                  facturación.
+                </p>
+                <p><strong>Uso de la información recogida</strong></p>
+                <p>
+                  Nuestro sitio web emplea la información con el fin de
+                  proporcionar el mejor servicio posible, particularmente para
+                  mantener un registro de usuarios, de pedidos en caso que
+                  aplique, y mejorar nuestros productos y servicios. &nbsp;Es
+                  posible que sean enviados correos electrónicos periódicamente
+                  a través de nuestro sitio con ofertas especiales, nuevos
+                  productos y otra información publicitaria que consideremos
+                  relevante para usted o que pueda brindarle algún beneficio,
+                  estos correos electrónicos serán enviados a la dirección que
+                  usted proporcione y podrán ser cancelados en cualquier
+                  momento.
+                </p>
+                <p>
+                  Pizza Libre está altamente comprometido para cumplir con el
+                  compromiso de mantener su información segura. Usamos los
+                  sistemas más avanzados y los actualizamos constantemente para
+                  asegurarnos que no exista ningún acceso no autorizado.
+                </p>
+                <p><strong>Cookies</strong></p>
+                <p>
+                  Una cookie se refiere a un fichero que es enviado con la
+                  finalidad de solicitar permiso para almacenarse en su
+                  ordenador, al aceptar dicho fichero se crea y la cookie sirve
+                  entonces para tener información respecto al tráfico web, y
+                  también facilita las futuras visitas a una web recurrente.
+                  Otra función que tienen las cookies es que con ellas las web
+                  pueden reconocerte individualmente y por tanto brindarte el
+                  mejor servicio personalizado de su web.
+                </p>
+                <p>
+                  Nuestro sitio web emplea las cookies para poder identificar
+                  las páginas que son visitadas y su frecuencia. Esta
+                  información es empleada únicamente para análisis estadístico y
+                  después la información se elimina de forma permanente. Usted
+                  puede eliminar las cookies en cualquier momento desde su
+                  ordenador. Sin embargo las cookies ayudan a proporcionar un
+                  mejor servicio de los sitios web, estás no dan acceso a
+                  información de su ordenador ni de usted, a menos de que usted
+                  así lo quiera y la proporcione directamente
+                  <a href="https://noticiasatleticodemadrid.es/" target="_blank"
+                    >noticias</a
+                  >. Usted puede aceptar o negar el uso de cookies, sin embargo
+                  la mayoría de navegadores aceptan cookies automáticamente pues
+                  sirve para tener un mejor servicio web. También usted puede
+                  cambiar la configuración de su ordenador para declinar las
+                  cookies. Si se declinan es posible que no pueda utilizar
+                  algunos de nuestros servicios.
+                </p>
+                <p><strong>Enlaces a Terceros</strong></p>
+                <p>
+                  Este sitio web pudiera contener en laces a otros sitios que
+                  pudieran ser de su interés. Una vez que usted de clic en estos
+                  enlaces y abandone nuestra página, ya no tenemos control sobre
+                  al sitio al que es redirigido y por lo tanto no somos
+                  responsables de los términos o privacidad ni de la protección
+                  de sus datos en esos otros sitios terceros. Dichos sitios
+                  están sujetos a sus propias políticas de privacidad por lo
+                  cual es recomendable que los consulte para confirmar que usted
+                  está de acuerdo con estas.
+                </p>
+                <p><strong>Control de su información personal</strong></p>
+                <p>
+                  En cualquier momento usted puede restringir la recopilación o
+                  el uso de la información personal que es proporcionada a
+                  nuestro sitio web.&nbsp; Cada vez que se le solicite rellenar
+                  un formulario, como el de alta de usuario, puede marcar o
+                  desmarcar la opción de recibir información por correo
+                  electrónico. &nbsp;En caso de que haya marcado la opción de
+                  recibir nuestro boletín o publicidad usted puede cancelarla en
+                  cualquier momento.
+                </p>
+                <p>
+                  Esta compañía no venderá, cederá ni distribuirá la información
+                  personal que es recopilada sin su consentimiento, salvo que
+                  sea requerido por un juez con un orden judicial.
+                </p>
+                <p>
+                  Pizza Libre Se reserva el derecho de cambiar los términos de
+                  la presente Política de Privacidad en cualquier momento.
+                </p>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -495,28 +620,37 @@
           </v-dialog>
           <v-dialog v-model="registrar.contacto" width="40%">
             <v-card>
-              <v-card-title class="text-h6">   Contactos </v-card-title>
+              <v-card-title class="text-h6"> Contactos </v-card-title>
               <v-card-text>
-               
-                
-                 
-                 <a href="https://wa.me/593967376825" target="_blank" rel="noopener noreferrer"> 
-                  <v-icon color="green">mdi-whatsapp</v-icon> 
-                  Pizza Libre Arcos Plaza 
+                <a
+                  href="https://wa.me/593967376825"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <v-icon color="green">mdi-whatsapp</v-icon>
+                  Pizza Libre Arcos Plaza
                 </a>
-                 <br>
-                 <a href="https://wa.me/593998268379" target="_blank" rel="noopener noreferrer"> 
-                  <v-icon color="green">mdi-whatsapp</v-icon> 
-                  Pizza Libre Urdesa 
+                <br />
+                <a
+                  href="https://wa.me/593998268379"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <v-icon color="green">mdi-whatsapp</v-icon>
+                  Pizza Libre Urdesa
                 </a>
-                    <br>
-                    <a href="https://wa.me/593997154773" target="_blank" rel="noopener noreferrer"> 
-                  <v-icon color="green">mdi-whatsapp</v-icon> 
+                <br />
+                <a
+                  href="https://wa.me/593997154773"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <v-icon color="green">mdi-whatsapp</v-icon>
                   Pizza Libre Buijo
                 </a>
-                  <br>
-                  <a href="#"   rel="noopener noreferrer"> 
-                  <v-icon color="primary">mdi-email</v-icon> 
+                <br />
+                <a href="#" rel="noopener noreferrer">
+                  <v-icon color="primary">mdi-email</v-icon>
                   hola@pizzalibregye.com
                 </a>
               </v-card-text>
@@ -547,7 +681,7 @@
           </v-card-title>
 
           <v-card-text>
-          <h4>Estamos Proximo a Terminar, presione siguiente</h4>  
+            <h4>Estamos Proximo a Terminar, presione siguiente</h4>
           </v-card-text>
 
           <v-card-actions class="justify-center">
@@ -569,26 +703,48 @@
             </v-btn>
           </v-card-actions>
           <div class="footer">
-              <p> <a href="#"  @click.prevent="registrar.terminos = true"  >Términos y Condiciones</a>|<a href="#" @click.prevent="registrar.politicas = true">Políticas de Privacidad</a>|<a href="#" @click.prevent="registrar.contacto = true">Contactos</a>  </p>
-            </div>
-            <v-dialog v-model="registrar.terminos" width="40%">
+            <p>
+              <a href="#" @click.prevent="registrar.terminos = true"
+                >Términos y Condiciones</a
+              >|<a href="#" @click.prevent="registrar.politicas = true"
+                >Políticas de Privacidad</a
+              >|<a href="#" @click.prevent="registrar.contacto = true"
+                >Contactos</a
+              >
+            </p>
+          </div>
+          <v-dialog v-model="registrar.terminos" width="40%">
             <v-card>
-              <v-card-title class="text-h6">   Términos y condiciones </v-card-title>
+              <v-card-title class="text-h6">
+                Términos y condiciones
+              </v-card-title>
               <v-card-text>
-               
                 <ul>
                   <li>
-                    El tiempo de espera para tu reserva es de 15 min. Posterior a eso liberaremos la mesa para que otros comensales puedan disfrutar.
+                    El tiempo de espera para tu reserva es de 15 min. Posterior
+                    a eso liberaremos la mesa para que otros comensales puedan
+                    disfrutar.
                   </li>
                   <li>
-                    Para la asignación de mesas por reservas grupales deben estar presentes mínimo el 70% del grupo.
+                    Para la asignación de mesas por reservas grupales deben
+                    estar presentes mínimo el 70% del grupo.
                   </li>
-                  <li>El valor del abono es consumible durante la fecha de la reserva.</li>
                   <li>
-                    Si deseas cancelar la reserva, te pedimos lo anuncies con mínimo de 24 horas para asignar la mesa a otros comensales.
+                    El valor del abono es consumible durante la fecha de la
+                    reserva.
                   </li>
-                  <li>Para reservas corporativas por favor escribir a info@pizzalibregye.com</li>
-                  <li>Por tu reserva tendrás la ventaja de conocer las novedades de pizza libre antes de anunciarlas.</li>
+                  <li>
+                    Si deseas cancelar la reserva, te pedimos lo anuncies con
+                    mínimo de 24 horas para asignar la mesa a otros comensales.
+                  </li>
+                  <li>
+                    Para reservas corporativas por favor escribir a
+                    info@pizzalibregye.com
+                  </li>
+                  <li>
+                    Por tu reserva tendrás la ventaja de conocer las novedades
+                    de pizza libre antes de anunciarlas.
+                  </li>
                 </ul>
               </v-card-text>
               <v-card-actions>
@@ -602,26 +758,116 @@
 
           <v-dialog v-model="registrar.politicas" width="40%">
             <v-card>
-              <v-card-title class="text-h6">   Términos y condiciones </v-card-title>
+              <v-card-title class="text-h6">
+                Términos y condiciones
+              </v-card-title>
               <v-card-text>
-               
                 <p><strong>POLÍTICA DE PRIVACIDAD</strong></p>
-<p>El presente Política de Privacidad establece los términos en que Pizza Libre usa y protege la información que es proporcionada por sus usuarios al momento de utilizar su sitio web. Esta compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le pedimos llenar los campos de información personal con la cual usted pueda ser identificado, lo hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento. Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.</p>
-<p><strong>Información que es recogida</strong></p>
-<p>Nuestro sitio web podrá recoger información personal por ejemplo: Nombre,&nbsp; información de contacto como&nbsp; su dirección de correo electrónica e información demográfica. Así mismo cuando sea necesario podrá ser requerida información específica para procesar algún pedido o realizar una entrega o facturación.</p>
-<p><strong>Uso de la información recogida</strong></p>
-<p>Nuestro sitio web emplea la información con el fin de proporcionar el mejor servicio posible, particularmente para mantener un registro de usuarios, de pedidos en caso que aplique, y mejorar nuestros productos y servicios. &nbsp;Es posible que sean enviados correos electrónicos periódicamente a través de nuestro sitio con ofertas especiales, nuevos productos y otra información publicitaria que consideremos relevante para usted o que pueda brindarle algún beneficio, estos correos electrónicos serán enviados a la dirección que usted proporcione y podrán ser cancelados en cualquier momento.</p>
-<p>Pizza Libre está altamente comprometido para cumplir con el compromiso de mantener su información segura. Usamos los sistemas más avanzados y los actualizamos constantemente para asegurarnos que no exista ningún acceso no autorizado.</p>
-<p><strong>Cookies</strong></p>
-<p>Una cookie se refiere a un fichero que es enviado con la finalidad de solicitar permiso para almacenarse en su ordenador, al aceptar dicho fichero se crea y la cookie sirve entonces para tener información respecto al tráfico web, y también facilita las futuras visitas a una web recurrente. Otra función que tienen las cookies es que con ellas las web pueden reconocerte individualmente y por tanto brindarte el mejor servicio personalizado de su web.</p>
-<p>Nuestro sitio web emplea las cookies para poder identificar las páginas que son visitadas y su frecuencia. Esta información es empleada únicamente para análisis estadístico y después la información se elimina de forma permanente. Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin embargo las cookies ayudan a proporcionar un mejor servicio de los sitios web, estás no dan acceso a información de su ordenador ni de usted, a menos de que usted así lo quiera y la proporcione directamente <a href="https://noticiasatleticodemadrid.es/" target="_blank">noticias</a>. Usted puede aceptar o negar el uso de cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues sirve para tener un mejor servicio web. También usted puede cambiar la configuración de su ordenador para declinar las cookies. Si se declinan es posible que no pueda utilizar algunos de nuestros servicios.</p>
-<p><strong>Enlaces a Terceros</strong></p>
-<p>Este sitio web pudiera contener en laces a otros sitios que pudieran ser de su interés. Una vez que usted de clic en estos enlaces y abandone nuestra página, ya no tenemos control sobre al sitio al que es redirigido y por lo tanto no somos responsables de los términos o privacidad  ni de la protección de sus datos en esos otros sitios terceros. Dichos sitios están sujetos a sus propias políticas de privacidad por lo cual es recomendable que los consulte para confirmar que usted está de acuerdo con estas.</p>
-<p><strong>Control de su información personal</strong></p>
-<p>En cualquier momento usted puede restringir la recopilación o el uso de la información personal que es proporcionada a nuestro sitio web.&nbsp; Cada vez que se le solicite rellenar un formulario, como el de alta de usuario, puede marcar o desmarcar la opción de recibir información por correo electrónico. &nbsp;En caso de que haya marcado la opción de recibir nuestro boletín o publicidad usted puede cancelarla en cualquier momento.</p>
-<p>Esta compañía no venderá, cederá ni distribuirá la información personal que es recopilada sin su consentimiento, salvo que sea requerido por un juez con un orden judicial.</p>
-<p>Pizza Libre Se reserva el derecho de cambiar los términos de la presente Política de Privacidad en cualquier momento.</p>
- 
+                <p>
+                  El presente Política de Privacidad establece los términos en
+                  que Pizza Libre usa y protege la información que es
+                  proporcionada por sus usuarios al momento de utilizar su sitio
+                  web. Esta compañía está comprometida con la seguridad de los
+                  datos de sus usuarios. Cuando le pedimos llenar los campos de
+                  información personal con la cual usted pueda ser identificado,
+                  lo hacemos asegurando que sólo se empleará de acuerdo con los
+                  términos de este documento. Sin embargo esta Política de
+                  Privacidad puede cambiar con el tiempo o ser actualizada por
+                  lo que le recomendamos y enfatizamos revisar continuamente
+                  esta página para asegurarse que está de acuerdo con dichos
+                  cambios.
+                </p>
+                <p><strong>Información que es recogida</strong></p>
+                <p>
+                  Nuestro sitio web podrá recoger información personal por
+                  ejemplo: Nombre,&nbsp; información de contacto como&nbsp; su
+                  dirección de correo electrónica e información demográfica. Así
+                  mismo cuando sea necesario podrá ser requerida información
+                  específica para procesar algún pedido o realizar una entrega o
+                  facturación.
+                </p>
+                <p><strong>Uso de la información recogida</strong></p>
+                <p>
+                  Nuestro sitio web emplea la información con el fin de
+                  proporcionar el mejor servicio posible, particularmente para
+                  mantener un registro de usuarios, de pedidos en caso que
+                  aplique, y mejorar nuestros productos y servicios. &nbsp;Es
+                  posible que sean enviados correos electrónicos periódicamente
+                  a través de nuestro sitio con ofertas especiales, nuevos
+                  productos y otra información publicitaria que consideremos
+                  relevante para usted o que pueda brindarle algún beneficio,
+                  estos correos electrónicos serán enviados a la dirección que
+                  usted proporcione y podrán ser cancelados en cualquier
+                  momento.
+                </p>
+                <p>
+                  Pizza Libre está altamente comprometido para cumplir con el
+                  compromiso de mantener su información segura. Usamos los
+                  sistemas más avanzados y los actualizamos constantemente para
+                  asegurarnos que no exista ningún acceso no autorizado.
+                </p>
+                <p><strong>Cookies</strong></p>
+                <p>
+                  Una cookie se refiere a un fichero que es enviado con la
+                  finalidad de solicitar permiso para almacenarse en su
+                  ordenador, al aceptar dicho fichero se crea y la cookie sirve
+                  entonces para tener información respecto al tráfico web, y
+                  también facilita las futuras visitas a una web recurrente.
+                  Otra función que tienen las cookies es que con ellas las web
+                  pueden reconocerte individualmente y por tanto brindarte el
+                  mejor servicio personalizado de su web.
+                </p>
+                <p>
+                  Nuestro sitio web emplea las cookies para poder identificar
+                  las páginas que son visitadas y su frecuencia. Esta
+                  información es empleada únicamente para análisis estadístico y
+                  después la información se elimina de forma permanente. Usted
+                  puede eliminar las cookies en cualquier momento desde su
+                  ordenador. Sin embargo las cookies ayudan a proporcionar un
+                  mejor servicio de los sitios web, estás no dan acceso a
+                  información de su ordenador ni de usted, a menos de que usted
+                  así lo quiera y la proporcione directamente
+                  <a href="https://noticiasatleticodemadrid.es/" target="_blank"
+                    >noticias</a
+                  >. Usted puede aceptar o negar el uso de cookies, sin embargo
+                  la mayoría de navegadores aceptan cookies automáticamente pues
+                  sirve para tener un mejor servicio web. También usted puede
+                  cambiar la configuración de su ordenador para declinar las
+                  cookies. Si se declinan es posible que no pueda utilizar
+                  algunos de nuestros servicios.
+                </p>
+                <p><strong>Enlaces a Terceros</strong></p>
+                <p>
+                  Este sitio web pudiera contener en laces a otros sitios que
+                  pudieran ser de su interés. Una vez que usted de clic en estos
+                  enlaces y abandone nuestra página, ya no tenemos control sobre
+                  al sitio al que es redirigido y por lo tanto no somos
+                  responsables de los términos o privacidad ni de la protección
+                  de sus datos en esos otros sitios terceros. Dichos sitios
+                  están sujetos a sus propias políticas de privacidad por lo
+                  cual es recomendable que los consulte para confirmar que usted
+                  está de acuerdo con estas.
+                </p>
+                <p><strong>Control de su información personal</strong></p>
+                <p>
+                  En cualquier momento usted puede restringir la recopilación o
+                  el uso de la información personal que es proporcionada a
+                  nuestro sitio web.&nbsp; Cada vez que se le solicite rellenar
+                  un formulario, como el de alta de usuario, puede marcar o
+                  desmarcar la opción de recibir información por correo
+                  electrónico. &nbsp;En caso de que haya marcado la opción de
+                  recibir nuestro boletín o publicidad usted puede cancelarla en
+                  cualquier momento.
+                </p>
+                <p>
+                  Esta compañía no venderá, cederá ni distribuirá la información
+                  personal que es recopilada sin su consentimiento, salvo que
+                  sea requerido por un juez con un orden judicial.
+                </p>
+                <p>
+                  Pizza Libre Se reserva el derecho de cambiar los términos de
+                  la presente Política de Privacidad en cualquier momento.
+                </p>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -633,28 +879,37 @@
           </v-dialog>
           <v-dialog v-model="registrar.contacto" width="40%">
             <v-card>
-              <v-card-title class="text-h6">   Contactos </v-card-title>
+              <v-card-title class="text-h6"> Contactos </v-card-title>
               <v-card-text>
-               
-                
-                 
-                 <a href="https://wa.me/593967376825" target="_blank" rel="noopener noreferrer"> 
-                  <v-icon color="green">mdi-whatsapp</v-icon> 
-                  Pizza Libre Arcos Plaza 
+                <a
+                  href="https://wa.me/593967376825"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <v-icon color="green">mdi-whatsapp</v-icon>
+                  Pizza Libre Arcos Plaza
                 </a>
-                 <br>
-                 <a href="https://wa.me/593998268379" target="_blank" rel="noopener noreferrer"> 
-                  <v-icon color="green">mdi-whatsapp</v-icon> 
-                  Pizza Libre Urdesa 
+                <br />
+                <a
+                  href="https://wa.me/593998268379"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <v-icon color="green">mdi-whatsapp</v-icon>
+                  Pizza Libre Urdesa
                 </a>
-                    <br>
-                    <a href="https://wa.me/593997154773" target="_blank" rel="noopener noreferrer"> 
-                  <v-icon color="green">mdi-whatsapp</v-icon> 
+                <br />
+                <a
+                  href="https://wa.me/593997154773"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <v-icon color="green">mdi-whatsapp</v-icon>
                   Pizza Libre Buijo
                 </a>
-                  <br>
-                  <a href="#"   rel="noopener noreferrer"> 
-                  <v-icon color="primary">mdi-email</v-icon> 
+                <br />
+                <a href="#" rel="noopener noreferrer">
+                  <v-icon color="primary">mdi-email</v-icon>
                   hola@pizzalibregye.com
                 </a>
               </v-card-text>
@@ -666,7 +921,6 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-
         </v-card>
         <!-- <span
           >Para reservas mayores a 10 personas, por favor contáctarse al número
@@ -674,7 +928,7 @@
         > -->
       </v-col>
     </v-row>
-      <!-- Generar Reserva -->
+    <!-- Generar Reserva -->
     <v-row
       class="bgimagen_tres"
       align="center"
@@ -714,7 +968,9 @@
               <v-row>
                 <v-col>
                   <span class="letraSpam"><b>Nombre de la reserva</b> </span>
-                  <span class="letraSpam">{{ form.nombres }} {{ form.apellidos }} </span>
+                  <span class="letraSpam"
+                    >{{ form.nombres }} {{ form.apellidos }}
+                  </span>
                 </v-col>
               </v-row>
               <v-row>
@@ -745,7 +1001,7 @@
             </v-container>
           </v-card-text>
           <v-card-actions class="justify-center">
-            <v-btn class="ma-2" color="primary" @click="PostGrabar()">
+            <v-btn class="ma-2" color="primary" @click="PostGrabarSinPago()">
               Agendar
               <template v-slot:loader>
                 <span class="custom-loader">
@@ -754,9 +1010,7 @@
               </template>
             </v-btn>
           </v-card-actions>
-         
         </v-card>
-       
       </v-col>
     </v-row>
   </div>
@@ -776,10 +1030,10 @@ export default {
   },
   data() {
     return {
-      vshow1: false,
+      vshow1: true,
       vshow2: false,
       vshow3: false,
-      vshow4: true,
+      vshow4: false,
       vshow5: false,
       vshow6: false,
       vshow7: false,
@@ -858,24 +1112,24 @@ export default {
         direccion: "",
         correo_electronico: "",
       },
-      datafast:{
-        amount:0,
-        givenName:0,
-        middleName:0,
-        surname:0,
-        ip:0,
-        merchantCustomerId:0,
-        merchantTransactionId:0,
-        email:0,
-        identificationDocId:0,
-        phone:0,
-        street1:0,
-        country:0,
-        SHOPPER_VAL_BASE0:0,
-        SHOPPER_VAL_BASEIMP:0,
-        SHOPPER_VAL_IVA:0,
-        price:0,
-        quantity:0,
+      datafast: {
+        amount: 10,
+        givenName: 0,
+        middleName: 0,
+        surname: 0,
+        ip: 0,
+        merchantCustomerId: 0,
+        merchantTransactionId: 0,
+        email: 0,
+        identificationDocId: 0,
+        phone: 0,
+        street1: 0,
+        country: 0,
+        SHOPPER_VAL_BASE0: 0,
+        SHOPPER_VAL_BASEIMP: 0,
+        SHOPPER_VAL_IVA: 0,
+        price: 0,
+        quantity: 0,
       },
       ListHora: [],
       ListaHoraReservada: [],
@@ -910,17 +1164,17 @@ export default {
         valid: false,
         country: undefined,
       },
-      Lista:{
-        amount:0,
-        
+      Lista: {
+        amount: 0,
       },
-      ListaId:"",
-      
+      ListaId: "",
     };
   },
   mounted() {
     //this.GenerarHoras();
     this.GetSucursal();
+    this.setObtenerIp();
+    this.getultimo();
     // this.GetHoraFecha();
   },
   computed: {
@@ -929,83 +1183,144 @@ export default {
     //   }
   },
   methods: {
-    onBeforeSubmitCard:function(){
-            if ($(".wpwl-control-cardHolder").val() === "") {
-                $(".wpwl-control-cardHolder").addClass("wpwl-has-error");
-                $(".wpwl-control-cardHolder").after("<div class='wpwl-hint-cardHolderError'>Campo requerido</div>");
-                $(".wpwl-button-pay").addClass("wpwl-button-error").attr("disabled","disabled");
-                return false;
-            }else{
-                return true;
-            }
-        },
-      submit() {
-     
+   
+    getultimo() {
+    
+
       let url =
         this.$store.getters.getRuta +
-        "/modulos/admision/reservas/SetEstado";
+        "/modulos/admision/reservas/GetLasID";
+     
+      axios
+        .get(url)
+        .then((response) => {
+          console.log("console",response);
+          
+          this.datafast.merchantCustomerId = response.data.merchantCustomerId;
+          this.datafast.merchantTransactionId = response.data.merchantTransactionId;
+        })
+        .catch((error) => {
+          //console.log("aqui", error);
+        });
+    },
+    onBeforeSubmitCard: function () {
+      if ($(".wpwl-control-cardHolder").val() === "") {
+        $(".wpwl-control-cardHolder").addClass("wpwl-has-error");
+        $(".wpwl-control-cardHolder").after(
+          "<div class='wpwl-hint-cardHolderError'>Campo requerido</div>"
+        );
+        $(".wpwl-button-pay")
+          .addClass("wpwl-button-error")
+          .attr("disabled", "disabled");
+        return false;
+      } else {
+        return true;
+      }
+    },
+    submit() {
+      let url =
+        this.$store.getters.getRuta + "/modulos/admision/reservas/SetEstado";
 
       axios
         .post(url, ListaEnviar)
         .then((response) => {
-         
-          console.log("crearpago",response.data.data );
+          //console.log("crearpago",response.data.data );
           // ListaActual.push(response.data.data);
           this.ListaId = response.data.data.id;
-          console.log("crearpagoid", this.ListaId );
-          let recaptchaScript = document.createElement('script');
-      recaptchaScript.setAttribute('src', 'https://test.oppwa.com/v1/paymentWidgets.js?checkoutId='+this.ListaId )
-      document.head.appendChild(recaptchaScript);
-     // console.log("crearpago",response.data.data );
+          //console.log("crearpagoid", this.ListaId );
+          let recaptchaScript = document.createElement("script");
+          recaptchaScript.setAttribute(
+            "src",
+            "https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=" +
+              this.ListaId
+          );
+          document.head.appendChild(recaptchaScript);
+          // //console.log("crearpago",response.data.data );
           // response.data.data.forEach((element) => {
           //   let objeto = {};
           //   objeto.horthisa_reserva = element.hora_reserva;
           //   ListaActual.push(objeto);
           // });
-        
-
         })
         .catch((error) => {
-
-          console.log("erorores",error);
+          //console.log("erorores",error);
         });
     },
-    SetCrearPago(){
-     
-      this.Lista.amount = 100;
-      let ListaEnviar = {
-        amount:100,
-      }
+    setObtenerIp() {
+      fetch("https://api.ipify.org?format=json")
+        .then((respuesta) => respuesta.json())
+        .then((datos) => {
+          this.datafast.ip = datos.ip;
+          // console.log('La dirección IP pública del usuario es:', datos.ip);
+        })
+        .catch((error) =>
+          console.error("Error al obtener la dirección IP:", error)
+        );
+    },
+    SetCrearPago() {
+      let cantidad = this.registrar.numero_persona;
+      let valor_reserva = 1;
+      let total = (valor_reserva * cantidad);
+      let valor_iva = 15;
+
+      let total_reserva_iva = total * valor_iva /100;
+
+      let total_a_pagar = total + total_reserva_iva;
+
+      
+      this.registrar.valor = total_a_pagar;
+
+      this.datafast.amount = total_a_pagar;
+      this.datafast.givenName = this.form.nombres;
+      this.datafast.middleName = this.form.nombres;
+      this.datafast.surname = this.form.apellidos;
+
+  
+      this.datafast.email = this.form.correo_electronico;
+      this.datafast.identificationDocId = this.form.cedula;
+      this.datafast.phone = this.form.celular;
+      this.datafast.street1 = this.form.direccion;
+      this.datafast.country = "EC";
+      this.datafast.SHOPPER_VAL_BASE0 = valor_reserva;
+      this.datafast.SHOPPER_VAL_BASEIMP = 0;
+      this.datafast.SHOPPER_VAL_IVA = total_reserva_iva;
+      this.datafast.price = valor_reserva;
+      this.datafast.quantity = cantidad;
+
+      console.log('datafast',this.datafast);
+      
       let url =
         this.$store.getters.getRuta +
         "/modulos/admision/reservas/SetGenerarPago";
 
       axios
-        .post(url, ListaEnviar)
+        .post(url, this.datafast)
         .then((response) => {
           //**  */
-         
-         // console.log("crearpago",response.data.data );
+
+          // //console.log("crearpago",response.data.data );
           // ListaActual.push(response.data.data);
           this.ListaId = response.data.data.id;
-         // console.log("crearpagoid", this.ListaId );
-          let recaptchaScript = document.createElement('script');
-      recaptchaScript.setAttribute('src', 'https://eu-prod.oppwa.com/v1/paymentWidgets.js?checkoutId='+this.ListaId )
-      document.head.appendChild(recaptchaScript);
-     // console.log("crearpago",response.data.data );
+          // //console.log("crearpagoid", this.ListaId );
+          let recaptchaScript = document.createElement("script");
+          recaptchaScript.setAttribute(
+            "src",
+            "https://eu-prod.oppwa.com/v1/paymentWidgets.js?checkoutId=" +
+              this.ListaId
+          );
+          document.head.appendChild(recaptchaScript);
+          // //console.log("crearpago",response.data.data );
           // response.data.data.forEach((element) => {
           //   let objeto = {};
           //   objeto.horthisa_reserva = element.hora_reserva;
           //   ListaActual.push(objeto);
           // });
- 
-    this.registrar.transaccion = this.ListaId;
-    this.PostGrabar();
 
+          this.registrar.transaccion = this.ListaId;
+          this.PostGrabar();
         })
         .catch((error) => {
-
-          console.log("erorores",error);
+          //console.log("erorores",error);
         });
     },
     onCardClick(n) {
@@ -1013,12 +1328,10 @@ export default {
       this.registrar.des_mesa = n.descripcion;
     },
     GetCliente(cedula) {
-
-
-      if (cedula.length <=9) {
+      if (cedula.length <= 9) {
         return;
       }
-     
+
       let url =
         this.$store.getters.getRuta +
         "/modulos/admision/reservas/GetCliente/" +
@@ -1030,10 +1343,9 @@ export default {
           this.form.apellidos = response.data.data.apellidos;
           this.form.nombres = response.data.data.nombres;
           this.form.correo_electronico = response.data.data.correo;
-          
         })
         .catch((error) => {
-          console.log("aqui", error);
+          //console.log("aqui", error);
         });
     },
 
@@ -1050,7 +1362,7 @@ export default {
       }
     },
     GetHoraFecha() {
-      console.log("click");
+      //console.log("click");
       let ListaActual = [];
       this.ListHora = [];
       this.ListaHoraReservada = [];
@@ -1066,7 +1378,6 @@ export default {
       axios
         .get(url)
         .then((response) => {
-         
           // ListaActual.push(response.data.data);
           this.ListHora = response.data.listaValida;
 
@@ -1082,20 +1393,20 @@ export default {
         return item["hora"];
       });
 
-      console.log(names);
+      //console.log(names);
 
-      console.log("ListaActual3", names);
+      //console.log("ListaActual3", names);
       //fecha de reserva
       var moment = require("moment");
       var date = moment("12:00", "HH:mm");
       var time = [];
 
       for (let k of ListaActual) {
-        console.log("verificar7", k);
+        //console.log("verificar7", k);
         // typeof (k) = string
       }
 
-      console.log("verificar3", Object.values(ListaActual));
+      //console.log("verificar3", Object.values(ListaActual));
       // do {
       //   this.ListHora.push(date.format("HH:mm"));
       //   date.add(60, "minutes");
@@ -1103,9 +1414,8 @@ export default {
       // } while (date <= moment("23:59", "HH:mm"));
     },
     GetValidarHora(id) {
-      
       this.registrar.hora_reserva = id.hora;
-     
+
       this.registrar.hora_estado = id.estado;
     },
     SetPrimerLayaout() {
@@ -1229,7 +1539,7 @@ export default {
       //   this.mensajeAler("Debe Aceptar términos y condiciones", false);
       //   return;
       // }
-     // this.e1 = 5;
+      // this.e1 = 5;
 
       let url =
         this.$store.getters.getRuta +
@@ -1238,15 +1548,39 @@ export default {
       axios
         .post(url, this.registrar)
         .then((response) => {
-         
-
           //window.location.replace("/");
           this.mensajeAler(true, true);
         })
         .catch((error) => {
           this.mensajeAler(true, true);
-          // console.log("aqui", error);
+          // //console.log("aqui", error);
           // window.location.replace("/");
+
+          this.loading = false;
+          this.loader = null;
+        });
+    },
+    PostGrabarSinPago() {
+      // if (this.registrar.terminoCheck == false) {
+      //   this.mensajeAler("Debe Aceptar términos y condiciones", false);
+      //   return;
+      // }
+      // this.e1 = 5;
+
+      let url =
+        this.$store.getters.getRuta +
+        "/modulos/admision/reservas/PostValidarUsuario";
+      this.Lista_llenar = [];
+      axios
+        .post(url, this.registrar)
+        .then((response) => {
+          window.location.replace("/");
+          this.mensajeAler(true, true);
+        })
+        .catch((error) => {
+          this.mensajeAler(true, true);
+          //console.log("aqui", error);
+           window.location.replace("/");
 
           this.loading = false;
           this.loader = null;
@@ -1286,12 +1620,12 @@ export default {
           .catch((error) => {
             let objeto = [];
             objeto = Object.values(error.response.data.errors);
-            //   console.log(objeto);
-            //   console.log(objeto.length);
+            //   //console.log(objeto);
+            //   //console.log(objeto.length);
 
             for (let index = 0; index < objeto.length; index++) {
               // const element = array[index];
-              // console.log(objeto.[index][0]);
+              // //console.log(objeto.[index][0]);
               this.mensajeAler(objeto[index][0], false);
             }
             this.loading = false;
@@ -1335,7 +1669,7 @@ export default {
           });
         })
         .catch((error) => {
-          console.log("aqui", error);
+          //console.log("aqui", error);
         });
     },
 
@@ -1359,7 +1693,7 @@ export default {
         individual = ci.toString().substring(position, position + 1);
 
         if (isNaN(individual)) {
-          console.log(ci, position, individual, isNaN(individual));
+          //console.log(ci, position, individual, isNaN(individual));
           isNumeric = false;
           break;
         } else {
@@ -1394,8 +1728,8 @@ export default {
 
       if (isNumeric) {
         // El total debe ser igual al último número de la cédula
-        console.log(ci, total, individual);
-        console.log(ci, typeof ci, ci.length);
+        //console.log(ci, total, individual);
+        //console.log(ci, typeof ci, ci.length);
         // La cédula debe contener al menos 10 dígitos
         if (ci.toString().length != 10) {
           this.mensajeAler(
@@ -1420,7 +1754,7 @@ export default {
           return false;
         }
 
-        console.log("cédula válida", ci);
+        //console.log("cédula válida", ci);
         return true;
       }
 
@@ -1445,13 +1779,13 @@ export default {
             objeto.color = item.Sucursal_Parroquia;
             objeto.url = "";
             this.icons.push(objeto);
-            console.log("aqui");
+            //console.log("aqui");
           });
 
-          console.log("aqui", response.data.data);
+          //console.log("aqui", response.data.data);
         })
         .catch((error) => {
-          console.log("aqui", error);
+          //console.log("aqui", error);
         });
     },
     mensajeAler(value, value2) {
@@ -1480,7 +1814,7 @@ export default {
   background-image: url("/img/fondo.jpg");
   background-size: cover;
   height: 110vh;
-} 
+}
 .bgimagen_dos {
   background-image: url("/img/fondo_dos.jpg");
   background-size: cover;
@@ -1491,12 +1825,11 @@ export default {
   background-size: cover;
   height: 100vh;
 }
-.letraSpam { 
-   font-size: 22px !important;
-   line-height: 1em;
- }
- .footer {
-  
+.letraSpam {
+  font-size: 22px !important;
+  line-height: 1em;
+}
+.footer {
   left: 0;
   bottom: 0;
   width: 100%;

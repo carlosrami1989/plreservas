@@ -17,6 +17,11 @@
  * @license MIT
  */
 
+/*!
+* sweetalert2 v11.4.4
+* Released under the MIT License.
+*/
+
 /*! ../../../directives/resize */
 
 /*! ../../../directives/ripple */
