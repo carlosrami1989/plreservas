@@ -30,7 +30,7 @@
 <li>Para la asignaci&oacute;n de mesas por reservas grupales deben estar presentes m&iacute;nimo el 70% del grupo.</li>
 <li>El valor del abono es consumible durante la fecha de la reserva.</li>
 <li>Si deseas cancelar la reserva, te pedimos lo anuncies con m&iacute;nimo de 24 horas para asignar la mesa a otros comensales.</li>
-<li>Para reservas corporativas por favor escribir a&nbsp;<a href="mailto:info@pizzalibregye.com" target="_blank" rel="noopener noreferrer">info@pizzalibregye.com</a></li>
+<li>Para reservas corporativas por favor escribir a&nbsp;<a href="mailto:hola@pizzalibregye.com" target="_blank" rel="noopener noreferrer">info@pizzalibregye.com</a></li>
 <li>Por tu reserva tendr&aacute;s la ventaja de conocer las novedades de pizza libre antes de anunciarlas.</li>
 </ul>
 <p><img style="height:400px" src="https://reservas.pizzalibre.com.ec/img/vuela.png" alt="" /></p>

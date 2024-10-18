@@ -76,13 +76,22 @@ class ReservacionController extends Controller
     //
     public function GetReserva($fechaini,$fechafin,$local)
     {
+      // return response()->json(['data' => $local], 200);
         try {
             $user = Auth::user();
 
             if ($user->profesion == 0) {
+                if ($local == null || $local == ""|| $local == 0) {
+                    $lista = tb_reservas_clientes::DatosReserva()->where("estado", 1)
+                        ->get();
+                    # code...
+                }else{
+                    $lista = tb_reservas_clientes::DatosReserva()->where("estado", 1)
+                    ->where("id_sucursal", $local)
+                    ->get();
+                }
                 # code...
-                $lista = tb_reservas_clientes::DatosReserva()->where("estado", 1)
-                ->get();
+               
                              
             }else{
                 $lista = tb_reservas_clientes::where("id_sucursal", $user->profesion)
@@ -382,7 +391,7 @@ class ReservacionController extends Controller
     public function GetSucursal()
     {
         try {
-            $lista = tb_sucursal::where('Empresa_Id', 1)
+            $lista = tb_sucursal::where('Empresa_Id', 1)->where("status",1)
                          ->get();
 
 

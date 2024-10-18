@@ -1259,7 +1259,7 @@ export default {
     },
     SetCrearPago() {
       let cantidad = this.registrar.numero_persona;
-      let valor_reserva = 1;
+      let valor_reserva = 10;
       let total = (valor_reserva * cantidad);
       let valor_iva = 15;
 
@@ -1281,8 +1281,8 @@ export default {
       this.datafast.phone = this.form.celular;
       this.datafast.street1 = this.form.direccion;
       this.datafast.country = "EC";
-      this.datafast.SHOPPER_VAL_BASE0 = valor_reserva;
-      this.datafast.SHOPPER_VAL_BASEIMP = 0;
+      this.datafast.SHOPPER_VAL_BASE0 = 0;
+      this.datafast.SHOPPER_VAL_BASEIMP = total;
       this.datafast.SHOPPER_VAL_IVA = total_reserva_iva;
       this.datafast.price = valor_reserva;
       this.datafast.quantity = cantidad;

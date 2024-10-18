@@ -61,7 +61,7 @@ class PaymentController extends Controller
             'shipping.country' =>'EC',
                 'customParameters[SHOPPER_ECI]' =>'0103910',
                 'customParameters[SHOPPER_PSERV]' =>'17913101',
-                'customParameters[SHOPPER_VAL_BASE0]' =>$request->SHOPPER_VAL_BASE0,
+                'customParameters[SHOPPER_VAL_BASE0]' =>0,
                 'customParameters[SHOPPER_VAL_BASEIMP]' =>$request->SHOPPER_VAL_BASEIMP,
                 'customParameters[SHOPPER_VAL_IVA]' =>$request->SHOPPER_VAL_IVA,
                 'customParameters[SHOPPER_MID]' =>'4100006439',

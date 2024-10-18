@@ -29,12 +29,12 @@
               <v-col cols="12" sm="3">
                 <br />
                 <label for="">Fecha inicio</label>
-                <input type="date" />
+                <input type="date" v-model="buscar.fechaini" />
               </v-col>
               <v-col cols="12" sm="3">
                 <br />
                 <label for="">Fecha fin</label>
-                <input type="date" />
+                <input type="date" v-model="buscar.fechaini"/>
               </v-col>
               <v-col cols="12" sm="3">
                 <br />
@@ -401,7 +401,7 @@ export default {
     // this.GenerarTotalVentas();
     let that = this;
     this.generar();
-    this.GetSucursal();
+   // this.GetSucursal();
 
     //this.GenerarToken();
   },
@@ -540,6 +540,8 @@ export default {
       axios
         .get(url)
         .then((response) => {
+
+         
           response.data.data.forEach((item) => {
             let objeto = {};
 
@@ -593,7 +595,12 @@ export default {
       axios
         .get(url)
         .then((response) => {
+          
+
+
           response.data.data.forEach((item) => {
+            
+
             let objeto = {};
 
             objeto.red_social_id = item.Sucursal_Id;
@@ -602,10 +609,11 @@ export default {
             objeto.color = item.Sucursal_Parroquia;
             objeto.url = "";
             this.icons.push(objeto);
-            console.log("aqui");
+            
           });
+         
 
-          console.log("aqui", response.data.data);
+          console.log("GetSucursal", this.icons);
         })
         .catch((error) => {
           console.log("aqui", error);

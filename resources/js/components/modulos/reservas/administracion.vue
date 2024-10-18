@@ -99,12 +99,12 @@
               <v-col cols="12" sm="3">
                 <br />
                 <label for="">Fecha inicio</label>
-                <input type="date" />
+                <input type="date" v-model="buscar.fechaini" />
               </v-col>
               <v-col cols="12" sm="3">
                 <br />
                 <label for="">Fecha fin</label>
-                <input type="date" />
+                <input type="date" v-model="buscar.fechafin" />
               </v-col>
               <v-col cols="12" sm="3">
                 <br />
@@ -621,7 +621,7 @@
       ListHora: [],
       buscar: {
         local: 0,
-        orde: "",
+        orden: "",
         fechaini: "",
         fechafin: "",
       },
@@ -910,7 +910,8 @@
       axios
         .get(url)
         .then((response) => {
-          console.log("lista",response.data.data);
+
+           
           
           this.ListaReservas = response.data.data;
         })
@@ -926,6 +927,16 @@
       axios
         .get(url)
         .then((response) => {
+
+          let objeto = {};
+
+            objeto.red_social_id = 0;
+            objeto.descripcion ="TODOS";
+            objeto.icono = "0";
+            objeto.color = "0";
+            objeto.url = "";
+            this.icons.push(objeto);
+
           response.data.data.forEach((item) => {
             let objeto = {};
 
@@ -935,7 +946,7 @@
             objeto.color = item.Sucursal_Parroquia;
             objeto.url = "";
             this.icons.push(objeto);
-            console.log("aqui");
+             
           });
 
           console.log("aqui", response.data.data);
