@@ -11449,7 +11449,8 @@ __webpack_require__.r(__webpack_exports__);
       Lista: {
         amount: 0
       },
-      ListaId: ""
+      ListaId: "",
+      loadingAgendar: false
     };
   },
   mounted: function mounted() {
@@ -11561,7 +11562,9 @@ __webpack_require__.r(__webpack_exports__);
         // });
 
         _this4.registrar.transaccion = _this4.ListaId;
-        _this4.PostGrabar();
+        if (cantidad >= 10) {
+          _this4.PostGrabar();
+        }
       })["catch"](function (error) {
         //console.log("erorores",error);
       });
@@ -11765,6 +11768,7 @@ __webpack_require__.r(__webpack_exports__);
         _this7.loader = null;
       });
     },
+    PostGrabarSinPagoAgenda: function PostGrabarSinPagoAgenda() {},
     PostGrabarSinPago: function PostGrabarSinPago() {
       var _this8 = this;
       // if (this.registrar.terminoCheck == false) {
@@ -11772,13 +11776,15 @@ __webpack_require__.r(__webpack_exports__);
       //   return;
       // }
       // this.e1 = 5;
-
+      this.loadingAgendar = true;
       var url = this.$store.getters.getRuta + "/modulos/admision/reservas/PostValidarUsuario";
       this.Lista_llenar = [];
       axios.post(url, this.registrar).then(function (response) {
         window.location.replace("/");
         _this8.mensajeAler(true, true);
+        // this.loadingAgendar = false;
       })["catch"](function (error) {
+        _this8.loadingAgendar = false;
         _this8.mensajeAler(true, true);
         //console.log("aqui", error);
         window.location.replace("/");
@@ -15707,6 +15713,7 @@ __webpack_require__.r(__webpack_exports__);
       vtext: "",
       valuecarlos: "",
       valuejonu: "",
+      hora: true,
       form: {
         id: ""
       }
@@ -15728,6 +15735,7 @@ __webpack_require__.r(__webpack_exports__);
     //   that.vtext = e.message;
     //   console.log(e.message)
     // })
+    this.GetHora();
   },
   methods: {
     isMobile: function isMobile() {
@@ -15735,6 +15743,18 @@ __webpack_require__.r(__webpack_exports__);
         return true;
       } else {
         return false;
+      }
+    },
+    GetHora: function GetHora() {
+      var date = new Date();
+      console.log("date", date.getHours());
+      var hora = date.getHours();
+      if (hora > 8 && hora < 13) {
+        this.hora = true;
+        console.log("verdadero");
+      } else {
+        this.hora = false;
+        console.log("false");
       }
     }
   }
@@ -17699,12 +17719,16 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         value: "descripcion",
         "class": "indigo darken-2 white--text"
       }, {
-        text: "Fecha",
+        text: "Fecha Reserva",
         value: "fecha_reserva",
         "class": "indigo darken-2 white--text"
       }, {
         text: "Hora",
         value: "hora_reserva",
+        "class": "indigo darken-2 white--text"
+      }, {
+        text: "Fecha Trans.",
+        value: "created_at",
         "class": "indigo darken-2 white--text"
       }, {
         text: "Acciones",
@@ -17734,8 +17758,8 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     }), "Lista_llenar", []), "ListHora", []), "buscar", {
       local: 0,
       orden: "",
-      fechaini: "",
-      fechafin: ""
+      fechaini: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10),
+      fechafin: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10)
     });
   },
   mounted: function mounted() {
@@ -17953,7 +17977,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     GetReservas: function GetReservas() {
       var _this5 = this;
-      var url = this.$store.getters.getRuta + "/modulos/clinico/reserva/GetReserva/0/0/" + this.buscar.local;
+      var url = this.$store.getters.getRuta + "/modulos/clinico/reserva/GetReserva/" + this.buscar.fechaini + "/" + this.buscar.fechafin + "/" + this.buscar.local;
       this.ListaReservas = [];
       axios.get(url).then(function (response) {
         _this5.ListaReservas = response.data.data;
@@ -20421,7 +20445,14 @@ var render = function render() {
       rounded: "xl",
       elevation: "15"
     }
-  }, [_c("v-card-title", {
+  }, [_c("v-alert", {
+    attrs: {
+      prominent: "",
+      type: "error",
+      color: "info",
+      icon: "mdi-alert"
+    }
+  }, [_vm._v("\n  A partir de las 18h30 atendemos a los clientes por orden de llegada\n  ")]), _vm._v(" "), _c("v-card-title", {
     staticClass: "justify-center",
     attrs: {
       "primary-title": ""
@@ -21190,7 +21221,9 @@ var render = function render() {
   }, [_c("v-btn", {
     staticClass: "ma-2",
     attrs: {
-      color: "primary"
+      loading: _vm.loadingAgendar,
+      disabled: _vm.loadingAgendar,
+      color: "success"
     },
     on: {
       click: function click($event) {
@@ -21200,17 +21233,11 @@ var render = function render() {
     scopedSlots: _vm._u([{
       key: "loader",
       fn: function fn() {
-        return [_c("span", {
-          staticClass: "custom-loader"
-        }, [_c("v-icon", {
-          attrs: {
-            light: ""
-          }
-        }, [_vm._v("mdi-cached")])], 1)];
+        return [_c("span", [_vm._v("Agendando...")])];
       },
       proxy: true
-    }], null, false, 1919056595)
-  }, [_vm._v("\n            Agendar\n            ")])], 1)], 1)], 1)], 1) : _vm._e()], 1);
+    }], null, false, 3859653076)
+  }, [_vm._v("\n          Agendar Reserva\n            ")])], 1)], 1)], 1)], 1) : _vm._e()], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -24839,19 +24866,29 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("br"), _vm._v(" "), _c("br"), _vm._v(" "), !_vm.isMobile() ? _c("div", [_c("div", {
     staticClass: "d-flex flex-column justify-space-between align-center"
-  }, [_c("v-img", {
+  }, [_vm.hora == true ? _c("div", [_c("v-img", {
+    attrs: {
+      src: "/img/MAYA_CAFE_LIBRE_IMAGEN.png"
+    }
+  })], 1) : _c("div", [_c("v-img", {
     attrs: {
       src: "/img/pepita.jpg"
     }
-  })], 1)]) : _c("div", [_c("div", {
+  })], 1)])]) : _c("div", [_c("div", {
     staticClass: "d-flex flex-column justify-space-between align-center"
-  }, [_c("v-img", {
+  }, [_vm.hora == true ? _c("div", [_c("v-img", {
+    staticClass: "ml-auto",
+    attrs: {
+      src: "/img/MAYA_CAFE_LIBRE_IMAGEN.png",
+      "max-heigth": "100%"
+    }
+  })], 1) : _c("div", [_c("v-img", {
     staticClass: "ml-auto",
     attrs: {
       src: "/img/pepita.jpg",
       "max-heigth": "100%"
     }
-  })], 1)])], 1);
+  })], 1)])])], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;

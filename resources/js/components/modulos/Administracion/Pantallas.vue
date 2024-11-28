@@ -161,6 +161,15 @@
           elevation="15"
           class="text-md-center"
         >
+        <v-alert
+         
+      prominent
+      type="error"
+       color="info"
+      icon="mdi-alert"
+    >
+    A partir de las 18h30 atendemos a los clientes por orden de llegada
+    </v-alert>
           <v-card-title primary-title class="justify-center">
             Seleccione Fecha y Hora
           </v-card-title>
@@ -1001,14 +1010,30 @@
             </v-container>
           </v-card-text>
           <v-card-actions class="justify-center">
-            <v-btn class="ma-2" color="primary" @click="PostGrabarSinPago()">
+            <!-- <v-btn class="ma-2" color="primary" @click="PostGrabarSinPago()">
               Agendar
               <template v-slot:loader>
                 <span class="custom-loader">
                   <v-icon light>mdi-cached</v-icon>
                 </span>
               </template>
+            </v-btn> -->
+
+
+            <v-btn
+              class="ma-2"
+              :loading="loadingAgendar"
+              :disabled="loadingAgendar"
+              color="success"
+             @click="PostGrabarSinPago()"
+            >
+            Agendar Reserva
+              <template v-slot:loader>
+                <span>Agendando...</span>
+              </template>
             </v-btn>
+
+
           </v-card-actions>
         </v-card>
       </v-col>
@@ -1168,6 +1193,7 @@ export default {
         amount: 0,
       },
       ListaId: "",
+      loadingAgendar:false,
     };
   },
   mounted() {
@@ -1317,7 +1343,10 @@ export default {
           // });
 
           this.registrar.transaccion = this.ListaId;
-          this.PostGrabar();
+          if (cantidad >=10) {
+            this.PostGrabar();
+          }
+         
         })
         .catch((error) => {
           //console.log("erorores",error);
@@ -1560,13 +1589,16 @@ export default {
           this.loader = null;
         });
     },
+    PostGrabarSinPagoAgenda() {
+
+    },
     PostGrabarSinPago() {
       // if (this.registrar.terminoCheck == false) {
       //   this.mensajeAler("Debe Aceptar términos y condiciones", false);
       //   return;
       // }
       // this.e1 = 5;
-
+this.loadingAgendar = true;
       let url =
         this.$store.getters.getRuta +
         "/modulos/admision/reservas/PostValidarUsuario";
@@ -1576,11 +1608,13 @@ export default {
         .then((response) => {
           window.location.replace("/");
           this.mensajeAler(true, true);
+         // this.loadingAgendar = false;
         })
         .catch((error) => {
+          this.loadingAgendar = false;
           this.mensajeAler(true, true);
           //console.log("aqui", error);
-           window.location.replace("/");
+          window.location.replace("/");
 
           this.loading = false;
           this.loader = null;

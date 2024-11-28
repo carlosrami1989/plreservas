@@ -42,6 +42,7 @@ class tb_reservas_clientes extends Model
 
     protected $casts = [
        
+        'fecha_reserva' =>   'date:Y-m-d',
         'created_at' =>   'date:Y-m-d',
        
     ];

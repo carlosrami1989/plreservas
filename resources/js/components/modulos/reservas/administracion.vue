@@ -576,13 +576,18 @@
           class: "indigo darken-2 white--text",
         },
         {
-          text: "Fecha",
+          text: "Fecha Reserva",
           value: "fecha_reserva",
           class: "indigo darken-2 white--text",
         },
         {
           text: "Hora",
           value: "hora_reserva",
+          class: "indigo darken-2 white--text",
+        },
+        {
+          text: "Fecha Trans.",
+          value: "created_at",
           class: "indigo darken-2 white--text",
         },
        
@@ -622,8 +627,16 @@
       buscar: {
         local: 0,
         orden: "",
-        fechaini: "",
-        fechafin: "",
+        fechaini: new Date(
+            Date.now() - new Date().getTimezoneOffset() * 60000
+          )
+            .toISOString()
+            .substr(0, 10),
+        fechafin: new Date(
+            Date.now() - new Date().getTimezoneOffset() * 60000
+          )
+            .toISOString()
+            .substr(0, 10),
       },
       };
       
@@ -904,7 +917,7 @@
     GetReservas() {
       let url =
         this.$store.getters.getRuta +
-        "/modulos/clinico/reserva/GetReserva/0/0/" +
+        "/modulos/clinico/reserva/GetReserva/"+this.buscar.fechaini+"/"+this.buscar.fechafin+"/" +
         this.buscar.local;
         this.ListaReservas = [];
       axios

@@ -83,11 +83,13 @@ class ReservacionController extends Controller
             if ($user->profesion == 0) {
                 if ($local == null || $local == ""|| $local == 0) {
                     $lista = tb_reservas_clientes::DatosReserva()->where("estado", 1)
-                        ->get();
+                    ->whereBetween('created_at', [$fechaini, $fechafin])
+                     ->get();
                     # code...
                 }else{
                     $lista = tb_reservas_clientes::DatosReserva()->where("estado", 1)
                     ->where("id_sucursal", $local)
+                    ->whereBetween('created_at', [$fechaini, $fechafin])
                     ->get();
                 }
                 # code...

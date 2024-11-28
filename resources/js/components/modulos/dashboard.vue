@@ -4,15 +4,39 @@
     <br>
     <br>
     <div v-if="!isMobile()">
+      
       <div class="d-flex flex-column justify-space-between align-center">
+      <!-- <v-img src="/img/pepita.jpg"  >    
+      </v-img> -->
+
+      <div v-if="hora == true">
+        <v-img src="/img/MAYA_CAFE_LIBRE_IMAGEN.png"  >
+     
+      </v-img>
+    </div>
+    <div  v-else>
       <v-img src="/img/pepita.jpg"  >    
       </v-img>
+    </div>
+
+
+
     </div>
   </div>
         <div v-else>
           <div class="d-flex flex-column justify-space-between align-center">
-          <v-img src="/img/pepita.jpg"  class="ml-auto"  max-heigth="100%"  >    
-          </v-img>
+            <div v-if="hora == true">
+      <v-img src="/img/MAYA_CAFE_LIBRE_IMAGEN.png"  class="ml-auto"  max-heigth="100%" >    
+      </v-img>
+    </div>
+    <div  v-else>
+      <v-img src="/img/pepita.jpg"   class="ml-auto"  max-heigth="100%">    
+      </v-img>
+    </div>
+
+
+          <!-- <v-img src="/img/pepita.jpg"  class="ml-auto"  max-heigth="100%"  >    
+          </v-img> -->
         </div>
       </div>
     
@@ -36,6 +60,7 @@ export default {
       vtext: "",
       valuecarlos: "",
       valuejonu: "",
+      hora:true,
       form: {
         id: "",
       },
@@ -59,6 +84,7 @@ export default {
     //   that.vtext = e.message;
     //   console.log(e.message)
     // })
+    this.GetHora();
   },
   methods: {
     isMobile() {
@@ -72,6 +98,19 @@ export default {
         return false;
       }
     },
+    GetHora(){
+      const date = new Date();
+      console.log("date",date.getHours());
+      let hora = date.getHours();
+      
+      if (  hora > 8 &&  hora < 13) {
+       this.hora =  true;
+       console.log("verdadero");
+      } else {
+        this.hora =  false;
+        console.log("false");
+      }
+    }
   },
 };
 </script>
